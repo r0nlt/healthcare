@@ -815,6 +815,17 @@ The radiation-tolerant machine learning framework has several potential applicat
 
 #### Build Errors
 
+- **CMake Error with pybind11**: If you encounter an error about pybind11's minimum CMake version being no longer supported:
+  ```
+  CMake Error at _deps/pybind11-src/CMakeLists.txt:8 (cmake_minimum_required):
+    cmake_minimum_required VERSION "3.4" is no longer supported by CMake.
+  ```
+  Apply the included patch by running:
+  ```bash
+  ./apply-patches.sh
+  ```
+  This patch updates pybind11's minimum required CMake version from 3.4 to 3.5 for compatibility with modern CMake versions.
+
 - **Eigen3 Not Found**: If you encounter Eigen3-related build errors, you can install it using:
   ```bash
   # Ubuntu/Debian
