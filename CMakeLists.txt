@@ -23,6 +23,26 @@ option(USE_MINIMAL_PYTHON_BINDINGS "Use minimal Python bindings to avoid compila
 find_package(Threads REQUIRED)
 find_package(Eigen3 REQUIRED)
 
+# Find GoogleTest
+find_package(GTest)
+if(NOT GTEST_FOUND)
+  message(STATUS "GTest not found via find_package, trying manual paths")
+  if(EXISTS "/usr/local/Cellar/googletest/1.17.0/include/gtest/gtest.h")
+    set(GTEST_INCLUDE_DIRS "/usr/local/Cellar/googletest/1.17.0/include")
+    set(GTEST_LIBRARIES "/usr/local/Cellar/googletest/1.17.0/lib/libgtest.a" "/usr/local/Cellar/googletest/1.17.0/lib/libgtest_main.a")
+    set(GTEST_FOUND TRUE)
+    message(STATUS "Found GTest at /usr/local/Cellar/googletest")
+  endif()
+endif()
+
+if(GTEST_FOUND)
+  include_directories(${GTEST_INCLUDE_DIRS})
+  message(STATUS "GTest include directories: ${GTEST_INCLUDE_DIRS}")
+  message(STATUS "GTest libraries: ${GTEST_LIBRARIES}")
+else()
+  message(WARNING "GTest not found, some tests may not compile")
+endif()
+
 # Use modern Boost find_package approach
 if(BUILD_PYTHON_BINDINGS)
   # For Python bindings, we may not need Boost
@@ -76,6 +96,12 @@ target_link_libraries(nasa_esa_standard_test
 
 # Add TMR library
 add_subdirectory(src/tmr)
+
+# Add research components
+add_subdirectory(src/rad_ml/research)
+
+# Add examples
+add_subdirectory(examples)
 
 # Add executable for Monte Carlo validation test
 add_executable(monte_carlo_validation test/verification/monte_carlo_validation.cpp)

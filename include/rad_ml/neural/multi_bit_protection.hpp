@@ -17,6 +17,9 @@
 #include <cmath>
 #include <cstring>
 #include <type_traits>
+#include "../core/redundancy/tmr.hpp"
+#include "../core/redundancy/space_enhanced_tmr.hpp"
+#include "../core/error/status_code.hpp"
 
 namespace rad_ml {
 namespace neural {
@@ -799,6 +802,280 @@ private:
         
         return false; // Couldn't correct
     }
+};
+
+/**
+ * @brief Checksum-based protection for neural network weights
+ * 
+ * This class implements a simple checksum protection mechanism.
+ * It only detects errors but doesn't provide correction.
+ */
+template <typename T>
+class ChecksumProtection : public MultibitProtection<T> {
+public:
+    /**
+     * @brief Default constructor
+     */
+    ChecksumProtection() : MultibitProtection<T>(T{}, ECCCodingScheme::NONE) {
+        updateChecksum();
+    }
+    
+    /**
+     * @brief Constructor with initial value
+     */
+    ChecksumProtection(T value) : MultibitProtection<T>(value, ECCCodingScheme::NONE) {
+        updateChecksum();
+    }
+    
+    /**
+     * @brief Set a new value
+     */
+    void setValue(T value) {
+        MultibitProtection<T>::setValue(value);
+        updateChecksum();
+    }
+    
+    /**
+     * @brief Check if the stored value has an error
+     */
+    bool hasError() const {
+        return checksum_ != calculateChecksum();
+    }
+    
+    /**
+     * @brief Try to correct errors (not possible with simple checksum)
+     */
+    bool correctErrors() const {
+        return false; // Cannot correct with just checksums
+    }
+    
+private:
+    uint32_t checksum_ = 0;
+    
+    void updateChecksum() {
+        checksum_ = calculateChecksum();
+    }
+    
+    uint32_t calculateChecksum() const {
+        union {
+            T value;
+            uint8_t bytes[sizeof(T)];
+        } data;
+        
+        data.value = this->getValue();
+        
+        uint32_t sum = 0;
+        for (size_t i = 0; i < sizeof(T); ++i) {
+            sum = (sum << 1) ^ data.bytes[i];
+        }
+        
+        return sum;
+    }
+};
+
+/**
+ * @brief Triple Modular Redundancy protection for neural network weights
+ * 
+ * This class uses TMR to protect values against radiation-induced errors.
+ */
+template <typename T>
+class TripleModularRedundancy : public MultibitProtection<T> {
+public:
+    /**
+     * @brief Default constructor
+     */
+    TripleModularRedundancy() : MultibitProtection<T>() {
+        tmr_ = core::redundancy::TripleModularRedundancy<T>();
+    }
+    
+    /**
+     * @brief Constructor with initial value
+     */
+    TripleModularRedundancy(T value) : MultibitProtection<T>(value) {
+        tmr_ = core::redundancy::TripleModularRedundancy<T>(value);
+    }
+    
+    /**
+     * @brief Get the protected value
+     */
+    T getValue() const {
+        return tmr_.get();
+    }
+    
+    /**
+     * @brief Set a new value
+     */
+    void setValue(T value) {
+        MultibitProtection<T>::setValue(value);
+        tmr_.set(value);
+    }
+    
+    /**
+     * @brief Check if the stored value has an error
+     */
+    bool hasError() const {
+        return tmr_.verify() != 0;
+    }
+    
+    /**
+     * @brief Try to correct errors
+     */
+    bool correctErrors() const {
+        return tmr_.repair() == 0;
+    }
+    
+private:
+    mutable core::redundancy::TripleModularRedundancy<T> tmr_;
+};
+
+/**
+ * @brief Adaptive TMR protection that adjusts to radiation levels
+ * 
+ * This class implements TMR that can be enabled/disabled adaptively
+ * based on radiation levels to save power/computation.
+ */
+template <typename T>
+class AdaptiveTMRProtection : public MultibitProtection<T> {
+public:
+    /**
+     * @brief Default constructor
+     */
+    AdaptiveTMRProtection() 
+        : MultibitProtection<T>(),
+          protection_enabled_(false),
+          radiation_threshold_(0.3) {
+        tmr_ = core::redundancy::TripleModularRedundancy<T>();
+    }
+    
+    /**
+     * @brief Constructor with initial value
+     */
+    AdaptiveTMRProtection(T value, double radiation_threshold = 0.3) 
+        : MultibitProtection<T>(value),
+          protection_enabled_(false),
+          radiation_threshold_(radiation_threshold) {
+        tmr_ = core::redundancy::TripleModularRedundancy<T>(value);
+    }
+    
+    /**
+     * @brief Get the protected value
+     */
+    T getValue() const {
+        if (protection_enabled_) {
+            return tmr_.get();
+        } else {
+            return MultibitProtection<T>::getValue();
+        }
+    }
+    
+    /**
+     * @brief Set a new value
+     */
+    void setValue(T value) {
+        MultibitProtection<T>::setValue(value);
+        tmr_.set(value);
+    }
+    
+    /**
+     * @brief Set the radiation threshold for activating protection
+     */
+    void setRadiationThreshold(double threshold) {
+        radiation_threshold_ = threshold;
+    }
+    
+    /**
+     * @brief Update protection based on current radiation level
+     */
+    void updateProtectionStatus(double radiation_level) {
+        protection_enabled_ = (radiation_level >= radiation_threshold_);
+    }
+    
+    /**
+     * @brief Check if the stored value has an error
+     */
+    bool hasError() const {
+        if (protection_enabled_) {
+            return tmr_.verify() != 0;
+        } else {
+            return MultibitProtection<T>::hasError();
+        }
+    }
+    
+    /**
+     * @brief Try to correct errors
+     */
+    bool correctErrors() const {
+        if (protection_enabled_) {
+            return tmr_.repair() == 0;
+        } else {
+            return MultibitProtection<T>::correctErrors();
+        }
+    }
+    
+private:
+    mutable core::redundancy::TripleModularRedundancy<T> tmr_;
+    bool protection_enabled_;
+    double radiation_threshold_;
+};
+
+/**
+ * @brief Space-optimized protection for neural network weights
+ * 
+ * This class implements enhanced TMR with optimizations for
+ * space applications, minimizing memory and power usage.
+ */
+template <typename T>
+class SpaceOptimizedProtection : public MultibitProtection<T> {
+public:
+    /**
+     * @brief Default constructor
+     */
+    SpaceOptimizedProtection() : MultibitProtection<T>() {
+        tmr_ = core::redundancy::SpaceEnhancedTMR<T>();
+    }
+    
+    /**
+     * @brief Constructor with initial value
+     */
+    SpaceOptimizedProtection(T value) : MultibitProtection<T>(value) {
+        tmr_ = core::redundancy::SpaceEnhancedTMR<T>(value);
+    }
+    
+    /**
+     * @brief Get the protected value
+     */
+    T getValue() const {
+        T value{};
+        tmr_.get(value);
+        return value;
+    }
+    
+    /**
+     * @brief Set a new value
+     */
+    void setValue(T value) {
+        MultibitProtection<T>::setValue(value);
+        tmr_.set(value);
+    }
+    
+    /**
+     * @brief Check if the stored value has an error
+     */
+    bool hasError() const {
+        core::error::StatusCode result = tmr_.verify();
+        return result != core::error::StatusCode::SUCCESS;
+    }
+    
+    /**
+     * @brief Try to correct errors
+     */
+    bool correctErrors() const {
+        core::error::StatusCode result = tmr_.repair();
+        return result == core::error::StatusCode::SUCCESS;
+    }
+    
+private:
+    mutable core::redundancy::SpaceEnhancedTMR<T> tmr_;
 };
 
 } // namespace neural
