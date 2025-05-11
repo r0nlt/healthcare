@@ -4,10 +4,31 @@ project(RadiationTolerantML)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Set modern CMake policies
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
+endif()
+
+if(POLICY CMP0148)
+  cmake_policy(SET CMP0148 NEW)
+endif()
+
+# Build options
+option(BUILD_PYTHON_BINDINGS "Build Python bindings" OFF)
+option(ENABLE_VISUALIZATION "Enable visualization with OpenCV" OFF)
+option(BUILD_TESTING "Build with testing enabled" ON)
+option(USE_MINIMAL_PYTHON_BINDINGS "Use minimal Python bindings to avoid compilation errors" ON)
+
 # Find required packages
 find_package(Threads REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(Boost REQUIRED COMPONENTS system filesystem)
+
+# Use modern Boost find_package approach
+if(BUILD_PYTHON_BINDINGS)
+  # For Python bindings, we may not need Boost
+else()
+  find_package(Boost REQUIRED COMPONENTS system filesystem)
+endif()
 
 # Setup Eigen includes properly
 if(EIGEN3_INCLUDE_DIR)
@@ -139,13 +160,62 @@ target_link_libraries(quantum_field_example
 )
 
 # Optional: Link OpenCV if visualization is enabled
-option(ENABLE_VISUALIZATION "Enable visualization with OpenCV" OFF)
 if(ENABLE_VISUALIZATION)
   find_package(OpenCV REQUIRED)
   target_link_libraries(neural_network_validation PRIVATE ${OpenCV_LIBS})
   target_compile_definitions(neural_network_validation PRIVATE ENABLE_VISUALIZATION)
   target_link_libraries(monte_carlo_neuralnetwork PRIVATE ${OpenCV_LIBS})
   target_compile_definitions(monte_carlo_neuralnetwork PRIVATE ENABLE_VISUALIZATION)
+endif()
+
+# Python bindings
+if(BUILD_PYTHON_BINDINGS)
+  message(STATUS "Building Python bindings")
+  
+  # Include pybind11
+  add_subdirectory(third_party/pybind11)
+  
+  # Find Python
+  find_package(Python COMPONENTS Interpreter Development REQUIRED)
+  
+  # Build the Python module - choose between minimal and full versions
+  if(USE_MINIMAL_PYTHON_BINDINGS)
+    message(STATUS "Using minimal Python bindings to avoid compilation errors")
+    pybind11_add_module(_core python/rad_ml_minimal.cpp)
+    # Minimal bindings don't need to link against any libraries
+  else()
+    message(STATUS "Using full Python bindings")
+    pybind11_add_module(_core python/rad_ml_core.cpp)
+    target_link_libraries(_core PRIVATE rad_ml_tmr rad_ml_testing rad_ml_qft)
+  endif()
+  
+  # Set the output directory for the Python module
+  set_target_properties(_core PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/rad_ml"
+  )
+  
+  # Create the Python package directory
+  file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/rad_ml)
+  
+  # Copy Python files for development mode
+  file(GLOB PYTHON_FILES "python/rad_ml/*.py")
+  foreach(PYTHON_FILE ${PYTHON_FILES})
+    get_filename_component(FILE_NAME ${PYTHON_FILE} NAME)
+    configure_file(${PYTHON_FILE} ${CMAKE_BINARY_DIR}/rad_ml/${FILE_NAME} COPYONLY)
+  endforeach()
+  
+  # Create __init__.py in the build directory
+  configure_file(python/rad_ml/__init__.py ${CMAKE_BINARY_DIR}/rad_ml/__init__.py COPYONLY)
+  
+  # Create examples directory
+  file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/examples)
+  
+  # Copy examples
+  file(GLOB EXAMPLE_FILES "python/examples/*.py")
+  foreach(EXAMPLE_FILE ${EXAMPLE_FILES})
+    get_filename_component(FILE_NAME ${EXAMPLE_FILE} NAME)
+    configure_file(${EXAMPLE_FILE} ${CMAKE_BINARY_DIR}/examples/${FILE_NAME} COPYONLY)
+  endforeach()
 endif()
 
 # Display configuration summary
@@ -160,6 +230,14 @@ message(STATUS "  C++ Standard: C++${CMAKE_CXX_STANDARD}")
 message(STATUS "  Build Type: ${BUILD_TYPE}")
 message(STATUS "  Quantum Field Theory: Enabled")
 message(STATUS "  Using Eigen3: ${EIGEN3_INCLUDE_DIR}")
+message(STATUS "  Python Bindings: ${BUILD_PYTHON_BINDINGS}")
+if(BUILD_PYTHON_BINDINGS)
+  if(USE_MINIMAL_PYTHON_BINDINGS)
+    message(STATUS "  Python Binding Type: Minimal")
+  else()
+    message(STATUS "  Python Binding Type: Full")
+  endif()
+endif()
 
 # Enable testing flag if needed
 if(BUILD_TESTING)
