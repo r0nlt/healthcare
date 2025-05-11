@@ -20,7 +20,7 @@
 #include <tuple>
 #include <algorithm>
 
-#include "../core/redundancy/space_tmr.hpp"
+#include "../core/redundancy/space_enhanced_tmr.hpp"
 #include "multi_bit_protection.hpp"
 
 namespace rad_ml {

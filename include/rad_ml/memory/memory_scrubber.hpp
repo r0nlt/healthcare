@@ -92,58 +92,27 @@ public:
     }
     
     /**
-     * @brief Register a memory region for scrubbing
+     * @brief Register memory region for scrubbing
      * 
-     * @param ptr Pointer to the memory region
-     * @param size Size of the memory region in bytes
-     * @param error_callback Optional callback when an error is detected
-     * @return Unique handle used to unregister the region
+     * @param memory_ptr Pointer to the memory region to scrub
+     * @param memory_size Size of the memory region in bytes
+     * @return ID of the registered memory region
      */
-    size_t registerMemoryRegion(
-        void* ptr, 
-        size_t size,
-        std::function<void(void*, size_t, uint8_t, uint8_t)> error_callback = nullptr) {
+    size_t registerMemoryRegion(void* memory_ptr, size_t memory_size) {
+        MemoryRegion region;
+        region.id = next_region_id_++;
+        region.memory_ptr = memory_ptr;
+        region.memory_size = memory_size;
+        region.last_scrub_time = std::chrono::steady_clock::now();
+        region.ecc_enabled = false;
+        region.crc_enabled = true;
+        region.calculated_crc = calculateCRC32(static_cast<const uint8_t*>(memory_ptr), memory_size);
         
-        if (!ptr || size == 0) {
-            return 0; // Invalid parameters
-        }
-        
+        // Add to registered regions
         std::lock_guard<std::mutex> lock(mutex_);
+        memory_regions_.push_back(region);
         
-        // Generate a unique handle for this region
-        static size_t next_handle = 1; // 0 is reserved for invalid handle
-        size_t handle = next_handle++;
-        
-        memory_regions_.push_back({
-            handle,
-            ptr, 
-            size, 
-            std::move(error_callback), 
-            std::vector<uint32_t>()
-        });
-        
-        // Calculate CRC for the new region
-        calculateChecksums(memory_regions_.back());
-        
-        return handle;
-    }
-    
-    /**
-     * @brief Modern version using std::span for memory region
-     * 
-     * @param memory Span representing the memory region
-     * @param error_callback Optional callback when an error is detected
-     * @return Unique handle used to unregister the region
-     */
-    size_t registerMemoryRegion(
-        std::span<std::byte> memory,
-        std::function<void(void*, size_t, uint8_t, uint8_t)> error_callback = nullptr) {
-        
-        return registerMemoryRegion(
-            memory.data(), 
-            memory.size_bytes(), 
-            std::move(error_callback)
-        );
+        return region.id;
     }
     
     /**
@@ -161,7 +130,7 @@ public:
         
         auto it = std::find_if(memory_regions_.begin(), memory_regions_.end(),
             [handle](const MemoryRegion& region) {
-                return region.handle == handle;
+                return region.id == handle;
             });
             
         if (it != memory_regions_.end()) {
@@ -283,7 +252,7 @@ public:
         
         size_t total_size = 0;
         for (const auto& region : memory_regions_) {
-            total_size += region.size;
+            total_size += region.memory_size;
         }
         return total_size;
     }
@@ -300,7 +269,7 @@ public:
         // Rate statistics
         double error_rate = 0.0;        // Errors per megabyte per hour
         
-        void updateErrorRate(size_t total_memory_bytes) {
+        void updateErrorRate(size_t total_memory_bytes, unsigned long interval_ms) {
             if (scrub_cycles == 0 || total_memory_bytes == 0) {
                 error_rate = 0.0;
                 return;
@@ -310,12 +279,12 @@ public:
             double errors_per_mb = static_cast<double>(errors_detected) / 
                                   (static_cast<double>(total_memory_bytes) / 1024.0 / 1024.0);
             
-            // Assuming 1 scrub cycle per scrub_interval_ms_
+            // Assuming 1 scrub cycle per interval_ms
             // Convert to hours: errors_per_mb / (cycles * interval_ms / ms_per_hour)
             constexpr double ms_per_hour = 3600.0 * 1000.0;
             error_rate = errors_per_mb / 
                         (static_cast<double>(scrub_cycles) * 
-                         static_cast<double>(scrub_interval_ms_) / ms_per_hour);
+                         static_cast<double>(interval_ms) / ms_per_hour);
         }
     };
     
@@ -332,11 +301,11 @@ public:
             // Calculate total memory size for error rate calculations
             size_t total_size = 0;
             for (const auto& region : memory_regions_) {
-                total_size += region.size;
+                total_size += region.memory_size;
             }
             
             // Update error rate
-            stats_.updateErrorRate(total_size);
+            stats_.updateErrorRate(total_size, scrub_interval_ms_);
         }
         
         return stats_;
@@ -350,13 +319,35 @@ public:
         stats_ = Statistics();
     }
     
+    /**
+     * @brief Set ECC protection for a memory region
+     * 
+     * @param region_id ID of the memory region
+     * @param enabled Whether ECC protection is enabled
+     * @return true if successful, false if the region was not found
+     */
+    bool setECCProtection(size_t region_id, bool enabled) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        
+        for (auto& region : memory_regions_) {
+            if (region.id == region_id) {
+                region.ecc_enabled = enabled;
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
 private:
     struct MemoryRegion {
-        size_t handle;
-        void* ptr;
-        size_t size;
-        std::function<void(void*, size_t, uint8_t, uint8_t)> error_callback;
-        std::vector<uint32_t> checksums;
+        size_t id;
+        void* memory_ptr;
+        size_t memory_size;
+        std::chrono::steady_clock::time_point last_scrub_time;
+        bool ecc_enabled;
+        bool crc_enabled;
+        uint32_t calculated_crc;
     };
     
     // Thread-safe members with proper synchronization
@@ -368,6 +359,7 @@ private:
     std::atomic<bool> terminate_requested_;     // Signal to terminate thread
     std::thread scrub_thread_;                  // Background thread
     mutable Statistics stats_;                  // Protected by mutex_
+    size_t next_region_id_ = 1;                  // Next available region ID
     
     /**
      * @brief Calculate checksums for a memory region
@@ -376,13 +368,13 @@ private:
      */
     void calculateChecksums(MemoryRegion& region) {
         // Clear existing checksums
-        region.checksums.clear();
+        region.calculated_crc = 0;
         
         // Calculate new checksums (1 per 64 bytes)
-        uint8_t* data = static_cast<uint8_t*>(region.ptr);
-        for (size_t offset = 0; offset < region.size; offset += 64) {
-            size_t block_size = std::min<size_t>(64, region.size - offset);
-            region.checksums.push_back(calculateCRC32(data + offset, block_size));
+        uint8_t* data = static_cast<uint8_t*>(region.memory_ptr);
+        for (size_t offset = 0; offset < region.memory_size; offset += 64) {
+            size_t block_size = std::min<size_t>(64, region.memory_size - offset);
+            region.calculated_crc = calculateCRC32(data + offset, block_size);
         }
     }
     
@@ -395,17 +387,15 @@ private:
     size_t scrubRegion(MemoryRegion& region) {
         size_t errors_detected = 0;
         
-        uint8_t* data = static_cast<uint8_t*>(region.ptr);
+        uint8_t* data = static_cast<uint8_t*>(region.memory_ptr);
         
         // Check each block
-        for (size_t i = 0; i < region.checksums.size(); ++i) {
-            size_t offset = i * 64;
-            size_t block_size = std::min<size_t>(64, region.size - offset);
+        for (size_t i = 0; i < region.memory_size; i += 64) {
+            size_t block_size = std::min<size_t>(64, region.memory_size - i);
             
-            uint32_t current_crc = calculateCRC32(data + offset, block_size);
-            uint32_t stored_crc = region.checksums[i];
+            uint32_t current_crc = calculateCRC32(data + i, block_size);
             
-            if (current_crc != stored_crc) {
+            if (current_crc != region.calculated_crc) {
                 // Error detected
                 errors_detected++;
                 stats_.errors_detected++;
@@ -417,9 +407,10 @@ private:
                 
                 // In a real implementation, we'd use ECC to locate and correct the error
                 // For this implementation, we'll notify the error callback if provided
-                if (region.error_callback) {
+                if (region.ecc_enabled) {
                     // For demonstration, we'll assume the first byte is corrupted
-                    region.error_callback(data + offset, offset, data[offset], 0xFF);
+                    // In a real implementation, this would be replaced with ECC correction logic
+                    region.calculated_crc = 0;
                 }
                 
                 // Count as corrected for demonstration
@@ -483,7 +474,6 @@ private:
         0x26D930AC, 0x51DE003A, 0xC8D75180, 0xBFD06116,
         0x21B4F4B5, 0x56B3C423, 0xCFBA9599, 0xB8BDA50F,
         0x2802B89E, 0x5F058808, 0xC60CD9B2, 0xB10BE924,
-        0x2F6F7C87, 0x58684C11, 0xC1611DAB, 0xB6662D3D,
         0x76DC4190, 0x01DB7106, 0x98D220BC, 0xEFD5102A,
         0x71B18589, 0x06B6B51F, 0x9FBFE4A5, 0xE8B8D433,
         0x7807C9A2, 0x0F00F934, 0x9609A88E, 0xE10E9818,

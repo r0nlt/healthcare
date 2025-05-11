@@ -1,43 +1,169 @@
-Mission,Protection,ErrorModel,ErrorRate,Accuracy,BaselineAccuracy,AccuracyPreservation,TotalBits,FlippedBits,ErrorsDetected,ErrorsCorrected,UncorrectableErrors,CorrectionEffectiveness,MemoryOverhead,ExecutionTime
-LEO Equatorial,None,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,0,6.81693
-LEO Equatorial,Minimal,SingleBit,1e-06,0,35,0,20100000,180,180,180,0,1,10,6.18605
-LEO Equatorial,Moderate,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,50,5.52178
-LEO Equatorial,High,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,100,6.2725
-LEO Equatorial,Very High,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,200,6.09634
-LEO Equatorial,Adaptive,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,75,5.47189
-LEO Polar,None,SingleBit,2.5e-06,0,35,0,20100000,117,0,0,0,1,0,5.96597
-LEO Polar,Minimal,SingleBit,2.5e-06,0,35,0,20100000,30,30,30,0,1,10,5.65671
-LEO Polar,Moderate,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,50,5.26467
-LEO Polar,High,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,100,5.55526
-LEO Polar,Very High,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,200,5.3476
-LEO Polar,Adaptive,SingleBit,2.5e-06,0,35,0,20100000,1,1,1,0,1,75,6.09434
-MEO,None,AdjacentBits,5e-06,0,35,0,20100000,22,0,0,0,1,0,5.22558
-MEO,Minimal,AdjacentBits,5e-06,0,35,0,20100000,250,250,250,0,1,10,5.3327
-MEO,Moderate,AdjacentBits,5e-06,0,35,0,20100000,155,155,155,0,1,50,6.27697
-MEO,High,AdjacentBits,5e-06,0,35,0,20100000,265,265,265,0,1,100,6.05659
-MEO,Very High,AdjacentBits,5e-06,0,35,0,20100000,94,94,94,0,1,200,5.26741
-MEO,Adaptive,AdjacentBits,5e-06,0,35,0,20100000,32,32,32,0,1,75,5.42538
-GEO,None,SingleBit,1e-05,0,35,0,20100000,147,0,0,0,1,0,5.34997
-GEO,Minimal,SingleBit,1e-05,0,35,0,20100000,73,73,0,73,0,10,5.93339
-GEO,Moderate,SingleBit,1e-05,0,35,0,20100000,221,221,0,221,0,50,5.20943
-GEO,High,SingleBit,1e-05,0,35,0,20100000,115,115,115,0,1,100,5.52846
-GEO,Very High,SingleBit,1e-05,0,35,0,20100000,5,5,5,0,1,200,5.30722
-GEO,Adaptive,SingleBit,1e-05,0,35,0,20100000,210,210,210,0,1,75,5.91972
-Lunar,None,AdjacentBits,2e-05,0,35,0,20100000,658,0,0,0,1,0,5.66389
-Lunar,Minimal,AdjacentBits,2e-05,0,35,0,20100000,276,276,238,38,0.862319,10,5.81883
-Lunar,Moderate,AdjacentBits,2e-05,0,35,0,20100000,403,403,389,14,0.965261,50,5.32917
-Lunar,High,AdjacentBits,2e-05,0,35,0,20100000,140,140,140,0,1,100,5.2427
-Lunar,Very High,AdjacentBits,2e-05,0,35,0,20100000,449,449,249,200,0.554566,200,5.65329
-Lunar,Adaptive,AdjacentBits,2e-05,0,35,0,20100000,352,352,352,0,1,75,5.99211
-Mars,None,RandomMulti,5e-05,0,35,0,20100000,825,0,0,0,1,0,5.46013
-Mars,Minimal,RandomMulti,5e-05,0,35,0,20100000,1332,1332,966,366,0.725225,10,5.4321
-Mars,Moderate,RandomMulti,5e-05,0,35,0,20100000,654,654,497,157,0.759939,50,5.4145
-Mars,High,RandomMulti,5e-05,0,35,0,20100000,1145,1145,861,284,0.751965,100,6.57411
-Mars,Very High,RandomMulti,5e-05,0,35,0,20100000,1133,1133,794,339,0.700794,200,8.65835
-Mars,Adaptive,RandomMulti,5e-05,0,35,0,20100000,921,921,698,223,0.757872,75,5.62581
-Solar Probe,None,RandomMulti,0.0001,0,35,0,1275000,180,0,0,0,1,0,5.76626
-Solar Probe,Minimal,RandomMulti,0.0001,0,35,0,1275000,32,32,22,10,0.6875,10,5.53915
-Solar Probe,Moderate,RandomMulti,0.0001,0,35,0,1275000,92,92,92,0,1,50,6.0431
-Solar Probe,High,RandomMulti,0.0001,0,35,0,1275000,41,41,20,21,0.487805,100,5.51409
-Solar Probe,Very High,RandomMulti,0.0001,0,35,0,1275000,37,37,0,37,0,200,5.18944
-Solar Probe,Adaptive,RandomMulti,0.0001,0,35,0,1275000,104,104,89,15,0.855769,75,5.84798
+Mission,Protection,FineTuning,ErrorModel,ErrorRate,Accuracy,BaselineAccuracy,AccuracyPreservation,TotalBits,FlippedBits,ErrorsDetected,ErrorsCorrected,UncorrectableErrors,CorrectionEffectiveness,MemoryOverhead,ExecutionTime
+LEO Equatorial,None,None,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,0,5.58897
+LEO Equatorial,None,Basic,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,0,5.29584
+LEO Equatorial,None,Standard,SingleBit,1e-06,0,35,0,20100000,196,0,0,0,1,0,6.02036
+LEO Equatorial,None,Advanced,SingleBit,1e-06,0,35,0,20100000,78,0,0,0,1,0,5.9946
+LEO Equatorial,Minimal,None,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,10,5.50031
+LEO Equatorial,Minimal,Basic,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,10,6.65097
+LEO Equatorial,Minimal,Standard,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,10,5.70715
+LEO Equatorial,Minimal,Advanced,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,10,5.61833
+LEO Equatorial,Moderate,None,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,50,5.42169
+LEO Equatorial,Moderate,Basic,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,50,5.55247
+LEO Equatorial,Moderate,Standard,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,50,5.61621
+LEO Equatorial,Moderate,Advanced,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,50,5.58019
+LEO Equatorial,High,None,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,100,6.46863
+LEO Equatorial,High,Basic,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,100,7.4929
+LEO Equatorial,High,Standard,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,100,5.57365
+LEO Equatorial,High,Advanced,SingleBit,1e-06,0,35,0,20100000,135,135,135,0,1,100,5.68854
+LEO Equatorial,Very High,None,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,200,5.76061
+LEO Equatorial,Very High,Basic,SingleBit,1e-06,0,35,0,20100000,182,182,182,0,1,200,10.7919
+LEO Equatorial,Very High,Standard,SingleBit,1e-06,0,35,0,20100000,150,150,0,150,0,200,5.7436
+LEO Equatorial,Very High,Advanced,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,200,5.38879
+LEO Equatorial,Adaptive,None,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,75,5.52399
+LEO Equatorial,Adaptive,Basic,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,75,5.5266
+LEO Equatorial,Adaptive,Standard,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,75,5.47577
+LEO Equatorial,Adaptive,Advanced,SingleBit,1e-06,0,35,0,20100000,0,0,0,0,1,75,5.63413
+LEO Polar,None,None,SingleBit,2.5e-06,0,35,0,20100000,145,0,0,0,1,0,5.24437
+LEO Polar,None,Basic,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,0,5.77225
+LEO Polar,None,Standard,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,0,5.78282
+LEO Polar,None,Advanced,SingleBit,2.5e-06,0,35,0,20100000,80,0,0,0,1,0,5.68429
+LEO Polar,Minimal,None,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,10,5.52393
+LEO Polar,Minimal,Basic,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,10,6.55727
+LEO Polar,Minimal,Standard,SingleBit,2.5e-06,0,35,0,20100000,179,179,179,0,1,10,5.77461
+LEO Polar,Minimal,Advanced,SingleBit,2.5e-06,0,35,0,20100000,123,123,0,123,0,10,5.64306
+LEO Polar,Moderate,None,SingleBit,2.5e-06,0,35,0,20100000,79,79,79,0,1,50,5.56406
+LEO Polar,Moderate,Basic,SingleBit,2.5e-06,0,35,0,20100000,195,195,195,0,1,50,5.89626
+LEO Polar,Moderate,Standard,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,50,5.51311
+LEO Polar,Moderate,Advanced,SingleBit,2.5e-06,0,35,0,20100000,149,149,149,0,1,50,5.58113
+LEO Polar,High,None,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,100,5.50346
+LEO Polar,High,Basic,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,100,5.8686
+LEO Polar,High,Standard,SingleBit,2.5e-06,0,35,0,20100000,108,108,108,0,1,100,5.35706
+LEO Polar,High,Advanced,SingleBit,2.5e-06,0,35,0,20100000,78,78,78,0,1,100,5.63331
+LEO Polar,Very High,None,SingleBit,2.5e-06,0,35,0,20100000,167,167,167,0,1,200,5.70932
+LEO Polar,Very High,Basic,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,200,5.74977
+LEO Polar,Very High,Standard,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,200,6.15555
+LEO Polar,Very High,Advanced,SingleBit,2.5e-06,0,35,0,20100000,69,69,69,0,1,200,5.40571
+LEO Polar,Adaptive,None,SingleBit,2.5e-06,0,35,0,20100000,11,11,11,0,1,75,5.50263
+LEO Polar,Adaptive,Basic,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,75,6.01539
+LEO Polar,Adaptive,Standard,SingleBit,2.5e-06,0,35,0,20100000,12,12,0,12,0,75,5.56563
+LEO Polar,Adaptive,Advanced,SingleBit,2.5e-06,0,35,0,20100000,0,0,0,0,1,75,5.95078
+MEO,None,None,AdjacentBits,5e-06,0,35,0,20100000,0,0,0,0,1,0,5.23671
+MEO,None,Basic,AdjacentBits,5e-06,0,35,0,20100000,0,0,0,0,1,0,5.70787
+MEO,None,Standard,AdjacentBits,5e-06,0,35,0,20100000,70,0,0,0,1,0,6.00466
+MEO,None,Advanced,AdjacentBits,5e-06,0,35,0,20100000,558,0,0,0,1,0,5.54369
+MEO,Minimal,None,AdjacentBits,5e-06,0,35,0,20100000,83,83,83,0,1,10,5.41517
+MEO,Minimal,Basic,AdjacentBits,5e-06,0,35,0,20100000,202,202,202,0,1,10,5.79339
+MEO,Minimal,Standard,AdjacentBits,5e-06,0,35,0,20100000,110,110,110,0,1,10,5.83387
+MEO,Minimal,Advanced,AdjacentBits,5e-06,0,35,0,20100000,0,0,0,0,1,10,7.85539
+MEO,Moderate,None,AdjacentBits,5e-06,0,35,0,20100000,290,290,114,176,0.393103,50,5.52139
+MEO,Moderate,Basic,AdjacentBits,5e-06,0,35,0,20100000,0,0,0,0,1,50,6.20202
+MEO,Moderate,Standard,AdjacentBits,5e-06,0,35,0,20100000,13,13,13,0,1,50,5.5815
+MEO,Moderate,Advanced,AdjacentBits,5e-06,0,35,0,20100000,47,47,47,0,1,50,5.49159
+MEO,High,None,AdjacentBits,5e-06,0,35,0,20100000,0,0,0,0,1,100,5.60598
+MEO,High,Basic,AdjacentBits,5e-06,0,35,0,20100000,0,0,0,0,1,100,5.79497
+MEO,High,Standard,AdjacentBits,5e-06,0,35,0,20100000,604,604,604,0,1,100,5.47408
+MEO,High,Advanced,AdjacentBits,5e-06,0,35,0,20100000,0,0,0,0,1,100,5.55971
+MEO,Very High,None,AdjacentBits,5e-06,0,35,0,20100000,198,198,198,0,1,200,5.89292
+MEO,Very High,Basic,AdjacentBits,5e-06,0,35,0,20100000,678,678,678,0,1,200,5.53381
+MEO,Very High,Standard,AdjacentBits,5e-06,0,35,0,20100000,52,52,52,0,1,200,5.84327
+MEO,Very High,Advanced,AdjacentBits,5e-06,0,35,0,20100000,95,95,0,95,0,200,6.23278
+MEO,Adaptive,None,AdjacentBits,5e-06,0,35,0,20100000,154,154,154,0,1,75,5.47652
+MEO,Adaptive,Basic,AdjacentBits,5e-06,0,35,0,20100000,31,31,0,31,0,75,5.87587
+MEO,Adaptive,Standard,AdjacentBits,5e-06,0,35,0,20100000,303,303,303,0,1,75,5.44212
+MEO,Adaptive,Advanced,AdjacentBits,5e-06,0,35,0,20100000,137,137,137,0,1,75,5.73147
+GEO,None,None,SingleBit,1e-05,0,35,0,20100000,179,0,0,0,1,0,5.88614
+GEO,None,Basic,SingleBit,1e-05,0,35,0,20100000,0,0,0,0,1,0,5.65507
+GEO,None,Standard,SingleBit,1e-05,0,35,0,20100000,288,0,0,0,1,0,5.728
+GEO,None,Advanced,SingleBit,1e-05,0,35,0,20100000,196,0,0,0,1,0,5.49183
+GEO,Minimal,None,SingleBit,1e-05,0,35,0,20100000,184,184,184,0,1,10,5.96301
+GEO,Minimal,Basic,SingleBit,1e-05,0,35,0,20100000,316,316,316,0,1,10,5.49315
+GEO,Minimal,Standard,SingleBit,1e-05,0,35,0,20100000,391,391,391,0,1,10,9.56099
+GEO,Minimal,Advanced,SingleBit,1e-05,0,35,0,20100000,173,173,173,0,1,10,5.61187
+GEO,Moderate,None,SingleBit,1e-05,0,35,0,20100000,0,0,0,0,1,50,7.79536
+GEO,Moderate,Basic,SingleBit,1e-05,0,35,0,20100000,376,376,376,0,1,50,5.72591
+GEO,Moderate,Standard,SingleBit,1e-05,0,35,0,20100000,286,286,286,0,1,50,5.34276
+GEO,Moderate,Advanced,SingleBit,1e-05,0,35,0,20100000,154,154,154,0,1,50,6.27458
+GEO,High,None,SingleBit,1e-05,0,35,0,20100000,194,194,194,0,1,100,5.4593
+GEO,High,Basic,SingleBit,1e-05,0,35,0,20100000,623,623,535,88,0.858748,100,5.81989
+GEO,High,Standard,SingleBit,1e-05,0,35,0,20100000,82,82,14,68,0.170732,100,5.55398
+GEO,High,Advanced,SingleBit,1e-05,0,35,0,20100000,25,25,25,0,1,100,5.56235
+GEO,Very High,None,SingleBit,1e-05,0,35,0,20100000,305,305,305,0,1,200,5.247
+GEO,Very High,Basic,SingleBit,1e-05,0,35,0,20100000,187,187,187,0,1,200,5.7183
+GEO,Very High,Standard,SingleBit,1e-05,0,35,0,20100000,76,76,51,25,0.671053,200,5.45831
+GEO,Very High,Advanced,SingleBit,1e-05,0,35,0,20100000,393,393,393,0,1,200,5.50504
+GEO,Adaptive,None,SingleBit,1e-05,0,35,0,20100000,47,47,47,0,1,75,5.88492
+GEO,Adaptive,Basic,SingleBit,1e-05,0,35,0,20100000,325,325,253,72,0.778462,75,7.88883
+GEO,Adaptive,Standard,SingleBit,1e-05,0,35,0,20100000,80,80,0,80,0,75,5.94734
+GEO,Adaptive,Advanced,SingleBit,1e-05,0,35,0,20100000,100,100,100,0,1,75,5.474
+Lunar,None,None,AdjacentBits,2e-05,0,35,0,20100000,340,0,0,0,1,0,5.41098
+Lunar,None,Basic,AdjacentBits,2e-05,0,35,0,20100000,258,0,0,0,1,0,5.33881
+Lunar,None,Standard,AdjacentBits,2e-05,0,35,0,20100000,195,0,0,0,1,0,5.7145
+Lunar,None,Advanced,AdjacentBits,2e-05,0,35,0,20100000,620,0,0,0,1,0,5.51961
+Lunar,Minimal,None,AdjacentBits,2e-05,0,35,0,20100000,164,164,164,0,1,10,5.64163
+Lunar,Minimal,Basic,AdjacentBits,2e-05,0,35,0,20100000,226,226,192,34,0.849558,10,6.08934
+Lunar,Minimal,Standard,AdjacentBits,2e-05,0,35,0,20100000,478,478,478,0,1,10,5.41433
+Lunar,Minimal,Advanced,AdjacentBits,2e-05,0,35,0,20100000,395,395,395,0,1,10,5.59767
+Lunar,Moderate,None,AdjacentBits,2e-05,0,35,0,20100000,233,233,0,233,0,50,5.64138
+Lunar,Moderate,Basic,AdjacentBits,2e-05,0,35,0,20100000,257,257,240,17,0.933852,50,6.20809
+Lunar,Moderate,Standard,AdjacentBits,2e-05,0,35,0,20100000,607,607,516,91,0.850082,50,12.2762
+Lunar,Moderate,Advanced,AdjacentBits,2e-05,0,35,0,20100000,487,487,310,177,0.63655,50,5.73689
+Lunar,High,None,AdjacentBits,2e-05,0,35,0,20100000,469,469,469,0,1,100,5.71235
+Lunar,High,Basic,AdjacentBits,2e-05,0,35,0,20100000,492,492,395,97,0.802846,100,5.40435
+Lunar,High,Standard,AdjacentBits,2e-05,0,35,0,20100000,0,0,0,0,1,100,5.42847
+Lunar,High,Advanced,AdjacentBits,2e-05,0,35,0,20100000,748,748,708,40,0.946524,100,6.16021
+Lunar,Very High,None,AdjacentBits,2e-05,0,35,0,20100000,59,59,59,0,1,200,9.20432
+Lunar,Very High,Basic,AdjacentBits,2e-05,0,35,0,20100000,220,220,201,19,0.913636,200,8.00218
+Lunar,Very High,Standard,AdjacentBits,2e-05,0,35,0,20100000,650,650,650,0,1,200,5.94323
+Lunar,Very High,Advanced,AdjacentBits,2e-05,0,35,0,20100000,526,526,399,127,0.758555,200,6.77418
+Lunar,Adaptive,None,AdjacentBits,2e-05,0,35,0,20100000,434,434,434,0,1,75,6.7286
+Lunar,Adaptive,Basic,AdjacentBits,2e-05,0,35,0,20100000,349,349,219,130,0.627507,75,5.37308
+Lunar,Adaptive,Standard,AdjacentBits,2e-05,0,35,0,20100000,353,353,353,0,1,75,5.73353
+Lunar,Adaptive,Advanced,AdjacentBits,2e-05,0,35,0,20100000,391,391,391,0,1,75,6.16654
+Mars,None,None,RandomMulti,5e-05,0,35,0,20100000,1001,0,0,0,1,0,5.40403
+Mars,None,Basic,RandomMulti,5e-05,0,35,0,20100000,810,0,0,0,1,0,5.30039
+Mars,None,Standard,RandomMulti,5e-05,0,35,0,20100000,590,0,0,0,1,0,6.05061
+Mars,None,Advanced,RandomMulti,5e-05,0,35,0,20100000,737,0,0,0,1,0,5.58664
+Mars,Minimal,None,RandomMulti,5e-05,0,35,0,20100000,914,914,800,114,0.875274,10,6.0729
+Mars,Minimal,Basic,RandomMulti,5e-05,0,35,0,20100000,1441,1441,1351,90,0.937543,10,5.33223
+Mars,Minimal,Standard,RandomMulti,5e-05,0,35,0,20100000,479,479,230,249,0.480167,10,5.57251
+Mars,Minimal,Advanced,RandomMulti,5e-05,0,35,0,20100000,1019,1019,874,145,0.857704,10,6.66423
+Mars,Moderate,None,RandomMulti,5e-05,0,35,0,20100000,1118,1118,1033,85,0.923971,50,5.94552
+Mars,Moderate,Basic,RandomMulti,5e-05,0,35,0,20100000,876,876,531,345,0.606164,50,6.33322
+Mars,Moderate,Standard,RandomMulti,5e-05,0,35,0,20100000,1738,1738,1386,352,0.797468,50,5.62742
+Mars,Moderate,Advanced,RandomMulti,5e-05,0,35,0,20100000,813,813,739,74,0.908979,50,5.494
+Mars,High,None,RandomMulti,5e-05,0,35,0,20100000,688,688,601,87,0.873547,100,6.58188
+Mars,High,Basic,RandomMulti,5e-05,0,35,0,20100000,732,732,602,130,0.822404,100,5.38483
+Mars,High,Standard,RandomMulti,5e-05,0,35,0,20100000,977,977,735,242,0.752303,100,5.35537
+Mars,High,Advanced,RandomMulti,5e-05,0,35,0,20100000,839,839,801,38,0.954708,100,5.88211
+Mars,Very High,None,RandomMulti,5e-05,0,35,0,20100000,543,543,431,112,0.793738,200,7.02671
+Mars,Very High,Basic,RandomMulti,5e-05,0,35,0,20100000,1457,1457,1136,321,0.779684,200,9.95381
+Mars,Very High,Standard,RandomMulti,5e-05,0,35,0,20100000,1571,1571,1157,414,0.736474,200,5.78574
+Mars,Very High,Advanced,RandomMulti,5e-05,0,35,0,20100000,250,250,250,0,1,200,5.88151
+Mars,Adaptive,None,RandomMulti,5e-05,0,35,0,20100000,1186,1186,875,311,0.737774,75,5.46589
+Mars,Adaptive,Basic,RandomMulti,5e-05,0,35,0,20100000,533,533,533,0,1,75,5.70528
+Mars,Adaptive,Standard,RandomMulti,5e-05,0,35,0,20100000,829,829,813,16,0.9807,75,5.67352
+Mars,Adaptive,Advanced,RandomMulti,5e-05,0,35,0,20100000,663,663,456,207,0.687783,75,5.98088
+Solar Probe,None,None,RandomMulti,0.0001,0,35,0,1275000,137,0,0,0,1,0,5.25266
+Solar Probe,None,Basic,RandomMulti,0.0001,0,35,0,1275000,223,0,0,0,1,0,6.22215
+Solar Probe,None,Standard,RandomMulti,0.0001,0,35,0,1275000,258,0,0,0,1,0,5.39297
+Solar Probe,None,Advanced,RandomMulti,0.0001,0,35,0,1275000,305,0,0,0,1,0,5.58511
+Solar Probe,Minimal,None,RandomMulti,0.0001,0,35,0,1275000,193,193,193,0,1,10,5.32544
+Solar Probe,Minimal,Basic,RandomMulti,0.0001,0,35,0,1275000,96,96,96,0,1,10,5.41309
+Solar Probe,Minimal,Standard,RandomMulti,0.0001,0,35,0,1275000,200,200,150,50,0.75,10,5.44199
+Solar Probe,Minimal,Advanced,RandomMulti,0.0001,0,35,0,1275000,156,156,120,36,0.769231,10,5.42969
+Solar Probe,Moderate,None,RandomMulti,0.0001,0,35,0,1275000,261,261,211,50,0.808429,50,5.24649
+Solar Probe,Moderate,Basic,RandomMulti,0.0001,0,35,0,1275000,113,113,47,66,0.415929,50,5.59469
+Solar Probe,Moderate,Standard,RandomMulti,0.0001,0,35,0,1275000,85,85,60,25,0.705882,50,5.3673
+Solar Probe,Moderate,Advanced,RandomMulti,0.0001,0,35,0,1275000,56,56,55,1,0.982143,50,5.38263
+Solar Probe,High,None,RandomMulti,0.0001,0,35,0,1275000,153,153,112,41,0.732026,100,5.3819
+Solar Probe,High,Basic,RandomMulti,0.0001,0,35,0,1275000,78,78,78,0,1,100,5.47799
+Solar Probe,High,Standard,RandomMulti,0.0001,0,35,0,1275000,128,128,97,31,0.757812,100,5.54597
+Solar Probe,High,Advanced,RandomMulti,0.0001,0,35,0,1275000,201,201,187,14,0.930348,100,5.29236
+Solar Probe,Very High,None,RandomMulti,0.0001,0,35,0,1275000,139,139,69,70,0.496403,200,5.34069
+Solar Probe,Very High,Basic,RandomMulti,0.0001,0,35,0,1275000,100,100,100,0,1,200,5.4189
+Solar Probe,Very High,Standard,RandomMulti,0.0001,0,35,0,1275000,176,176,104,72,0.590909,200,5.56191
+Solar Probe,Very High,Advanced,RandomMulti,0.0001,0,35,0,1275000,76,76,71,5,0.934211,200,5.41763
+Solar Probe,Adaptive,None,RandomMulti,0.0001,0,35,0,1275000,135,135,54,81,0.4,75,6.96447
+Solar Probe,Adaptive,Basic,RandomMulti,0.0001,0,35,0,1275000,58,58,39,19,0.672414,75,5.64929
+Solar Probe,Adaptive,Standard,RandomMulti,0.0001,0,35,0,1275000,19,19,19,0,1,75,5.42417
+Solar Probe,Adaptive,Advanced,RandomMulti,0.0001,0,35,0,1275000,235,235,114,121,0.485106,75,5.38761

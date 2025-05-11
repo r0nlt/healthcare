@@ -3,6 +3,7 @@
 
 # Add src-level targets
 add_subdirectory(tmr)
+add_subdirectory(rad_ml)
 
 # Other src subdirectories can be added here as needed
 
