@@ -7,6 +7,16 @@
 
 A C++ framework for implementing machine learning models that can operate reliably in radiation environments, such as space. This framework implements industry-standard radiation tolerance techniques validated against NASA and ESA reference models. Our recent breakthrough (v0.9.3) demonstrates that properly designed neural networks can actually achieve improved performance under radiation conditions.
 
+## Important Note for Students
+
+**For simplified building and testing instructions, please refer to the [Student Guide](STUDENT_GUIDE.md).**
+
+The Student Guide provides easy-to-follow steps for:
+- Installing dependencies
+- Building the project
+- Running tests and examples
+- Troubleshooting common issues
+
 ## Table of Contents
 
 - [How Radiation Affects Computing](#how-radiation-affects-computing)
