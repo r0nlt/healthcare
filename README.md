@@ -1,9 +1,12 @@
 # Radiation-Tolerant Machine Learning Framework
 
 **Author:** Rishab Nuguru  
-**Original Copyright:** © 2025 Rishab Nuguru   
+**Original Copyright:** © 2025 Rishab Nuguru
+**Company:** Space Labs AI   
 **License:** GNU General Public License v3.0  
 **Repository:** https://github.com/r0nlt/Space-Radiation-Tolerant
+**Company Page** https://www.linkedin.com/company/space-labs-ai
+
 
 A C++ framework for implementing machine learning models that can operate reliably in radiation environments, such as space. This framework implements industry-standard radiation tolerance techniques validated against NASA and ESA reference models. Our recent breakthrough (v0.9.3) demonstrates that properly designed neural networks can actually achieve improved performance under radiation conditions.
 
