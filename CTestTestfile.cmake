@@ -27,4 +27,3 @@ set_tests_properties(quantum_field_validation_test PROPERTIES  _BACKTRACE_TRIPLE
 subdirs("src/tmr")
 subdirs("src/rad_ml/research")
 subdirs("examples")
-subdirs("third_party/pybind11")
