@@ -1,7 +1,8 @@
 # Radiation-Tolerant Machine Learning Framework
 
 **Author:** Rishab Nuguru  
-**Original Copyright:** © 2025 Rishab Nuguru   
+**Original Copyright:** © 2025 Rishab Nuguru
+**Company:** Space Labs AI   
 **License:** GNU General Public License v3.0  
 **Repository:** https://github.com/r0nlt/Space-Radiation-Tolerant
 
