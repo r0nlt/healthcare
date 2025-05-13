@@ -8,6 +8,13 @@
 **Company Page** https://www.linkedin.com/company/space-labs-ai
 **Version:** v0.9.7
 
+If someone uses this code
+Then they MUST:
+
+Make ALL of their source code public (both Risahab Nuguru's originial code and their adjustments)
+License their entire program under the GPL (same license)
+Allow their customers to freely share and modify the code, too!
+
 
 A C++ framework for implementing machine learning models that can operate reliably in radiation environments, such as space. This framework implements industry-standard radiation tolerance techniques validated against NASA and ESA reference models. Our recent breakthrough (v0.9.3) demonstrates that properly designed neural networks can actually achieve improved performance under radiation conditions.
 
