@@ -37,6 +37,45 @@ struct ArchitectureTestResult {
     size_t errors_detected;
     size_t errors_corrected;
     size_t uncorrectable_errors;
+    
+    // Monte Carlo statistics
+    double baseline_accuracy_stddev = 0.0;  // Standard deviation of baseline accuracy
+    double radiation_accuracy_stddev = 0.0; // Standard deviation of radiation accuracy
+    double accuracy_preservation_stddev = 0.0; // Standard deviation of preservation
+    size_t monte_carlo_trials = 1;          // Number of Monte Carlo trials performed
+    
+    // Constructor for single test results
+    ArchitectureTestResult() = default;
+    
+    // Constructor for Monte Carlo aggregated results
+    ArchitectureTestResult(
+        const std::vector<size_t>& sizes,
+        double dropout,
+        bool residual,
+        neural::ProtectionLevel protection,
+        sim::Environment env,
+        double base_acc, double base_stddev,
+        double rad_acc, double rad_stddev,
+        double preservation, double preservation_stddev,
+        double exec_time,
+        size_t errors_det, size_t errors_corr, size_t uncorr_errors,
+        size_t num_trials = 1
+    ) : layer_sizes(sizes),
+        dropout_rate(dropout),
+        has_residual_connections(residual),
+        protection_level(protection),
+        environment(env),
+        baseline_accuracy(base_acc),
+        radiation_accuracy(rad_acc),
+        accuracy_preservation(preservation),
+        execution_time_ms(exec_time),
+        errors_detected(errors_det),
+        errors_corrected(errors_corr),
+        uncorrectable_errors(uncorr_errors),
+        baseline_accuracy_stddev(base_stddev),
+        radiation_accuracy_stddev(rad_stddev),
+        accuracy_preservation_stddev(preservation_stddev),
+        monte_carlo_trials(num_trials) {}
 };
 
 /**
@@ -88,7 +127,30 @@ public:
         bool use_residual_connections,
         neural::ProtectionLevel protection_level,
         int epochs,
-        sim::Environment env);
+        sim::Environment env,
+        unsigned int trial_num = 0);
+    
+    /**
+     * Test a specific network architecture using Monte Carlo method
+     * @param architecture Layer sizes of the neural network
+     * @param dropout_rate Dropout rate to use
+     * @param use_residual_connections Whether to use residual connections
+     * @param protection_level Protection level to use
+     * @param epochs Number of training epochs
+     * @param env Radiation environment to test in
+     * @param num_trials Number of Monte Carlo trials to run
+     * @param seed_offset Starting seed offset for random number generation
+     * @return Aggregated test results with statistical data
+     */
+    ArchitectureTestResult testArchitectureMonteCarlo(
+        const std::vector<size_t>& architecture,
+        double dropout_rate,
+        bool use_residual_connections,
+        neural::ProtectionLevel protection_level,
+        int epochs,
+        sim::Environment env,
+        size_t num_trials = 50,
+        unsigned int seed_offset = 0);
     
     /**
      * Get the best architecture for a specific environment
@@ -131,6 +193,10 @@ private:
         bool has_residual,
         neural::ProtectionLevel protection_level,
         sim::Environment env);
+    
+    // Calculate statistical results from multiple Monte Carlo trials
+    ArchitectureTestResult calculateMonteCarloStatistics(
+        const std::vector<ArchitectureTestResult>& trial_results);
     
     // Save results to CSV
     void saveResultsToFile();

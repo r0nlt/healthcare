@@ -3,6 +3,7 @@
 # Set sources for research components
 set(RAD_ML_RESEARCH_SOURCES
     architecture_tester.cpp
+    auto_arch_search.cpp
     # Other source files will be added as they are implemented
 )
 

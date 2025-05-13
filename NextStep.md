@@ -151,7 +151,7 @@ The framework has successfully implemented several key components from Phase 1 a
 
 The framework is now significantly more robust with the memory safety enhancements added in v0.9.6, showing stronger resilience to radiation-induced errors and providing more reliable mission simulation capabilities.
 
----
+--- 
 
 ## Phase 2: Radiation-Aware Training (3 Weeks)
 
