@@ -16,7 +16,7 @@ Enhanced Test Scenarios:
 - EDGE_CASES: Tests with boundary values (max, min, near-zero, infinity, NaN)
 - CORRELATED_ERRORS: Tests with spatially correlated bit errors across copies
 - RECOVERY_TEST: Tests recovery capabilities after sequential errors
-- Test Date: 2025-05-11 22:44:52
+- Test Date: 2025-05-11 23:47:07
 
 ==========================================================================
 DATA TYPE: float
@@ -97,7 +97,7 @@ ENHANCED METHODS:
   Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
 
 MEMORY PROTECTION:
-  Protected Value          : 99.8640% [99.8183% - 99.9097%]
+  Protected Value          : 99.8760% [99.8324% - 99.9196%]
   Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
 
 Error Type: COMBINED
@@ -196,7 +196,7 @@ ENHANCED METHODS:
   Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
 
 MEMORY PROTECTION:
-  Protected Value          : 99.8800% [99.8371% - 99.9229%]
+  Protected Value          : 99.8840% [99.8418% - 99.9262%]
   Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
 
 Error Type: COMBINED
@@ -295,7 +295,7 @@ ENHANCED METHODS:
   Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
 
 MEMORY PROTECTION:
-  Protected Value          : 99.8840% [99.8418% - 99.9262%]
+  Protected Value          : 99.8640% [99.8183% - 99.9097%]
   Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
 
 Error Type: COMBINED
@@ -394,7 +394,7 @@ ENHANCED METHODS:
   Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
 
 MEMORY PROTECTION:
-  Protected Value          : 99.8440% [99.7951% - 99.8929%]
+  Protected Value          : 99.8760% [99.8324% - 99.9196%]
   Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
 
 Error Type: COMBINED
@@ -493,22 +493,22 @@ ENHANCED METHODS:
   Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
 
 MEMORY PROTECTION:
-  Protected Value          : 99.8920% [99.8513% - 99.9327%]
+  Protected Value          : 99.8800% [99.8371% - 99.9229%]
   Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
 
 Error Type: COMBINED
   Total Trials: 25000
 
 ORIGINAL METHODS:
-  Standard Voting          : 99.9960% [99.9882% - 100.0000%]
-  Bit-Level Voting         : 99.9960% [99.9882% - 100.0000%]
-  Word Error Voting        : 99.9960% [99.9882% - 100.0000%]
-  Burst Error Voting       : 99.9960% [99.9882% - 100.0000%]
-  Adaptive Voting          : 99.9960% [99.9882% - 100.0000%]
+  Standard Voting          : 99.9880% [99.9744% - 100.0000%]
+  Bit-Level Voting         : 99.9880% [99.9744% - 100.0000%]
+  Word Error Voting        : 99.9880% [99.9744% - 100.0000%]
+  Burst Error Voting       : 99.9880% [99.9744% - 100.0000%]
+  Adaptive Voting          : 99.9880% [99.9744% - 100.0000%]
 
 ENHANCED METHODS:
-  Weighted Voting          : 99.9960% [99.9882% - 100.0000%]
-  Fast Bit Correction      : 99.9960% [99.9882% - 100.0000%]
+  Weighted Voting          : 99.9880% [99.9744% - 100.0000%]
+  Fast Bit Correction      : 99.9880% [99.9744% - 100.0000%]
   Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
 
 MEMORY PROTECTION:
@@ -592,7 +592,605 @@ ENHANCED METHODS:
   Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
 
 MEMORY PROTECTION:
-  Protected Value          : 99.8280% [99.7766% - 99.8794%]
+  Protected Value          : 99.8800% [99.8371% - 99.9229%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 99.9960% [99.9882% - 100.0000%]
+  Bit-Level Voting         : 99.9960% [99.9882% - 100.0000%]
+  Word Error Voting        : 99.9960% [99.9882% - 100.0000%]
+  Burst Error Voting       : 99.9960% [99.9882% - 100.0000%]
+  Adaptive Voting          : 99.9960% [99.9882% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 99.9960% [99.9882% - 100.0000%]
+  Fast Bit Correction      : 99.9960% [99.9882% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+==========================================================================
+DATA TYPE: double
+==========================================================================
+
+ENVIRONMENT: LEO
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: GEO
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: LUNAR
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: SAA
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: SOLAR_STORM
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 99.9880% [99.9744% - 100.0000%]
+  Bit-Level Voting         : 99.9880% [99.9744% - 100.0000%]
+  Word Error Voting        : 99.9880% [99.9744% - 100.0000%]
+  Burst Error Voting       : 99.9880% [99.9744% - 100.0000%]
+  Adaptive Voting          : 99.9880% [99.9744% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 99.9880% [99.9744% - 100.0000%]
+  Fast Bit Correction      : 99.9880% [99.9744% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: JUPITER
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
   Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
 
 Error Type: COMBINED
@@ -617,7 +1215,605 @@ MEMORY PROTECTION:
 --------------------------------------------------------------------------
 
 ==========================================================================
-DATA TYPE: double
+DATA TYPE: int32_t
+==========================================================================
+
+ENVIRONMENT: LEO
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 99.8880% [99.8465% - 99.9295%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: GEO
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 99.8760% [99.8324% - 99.9196%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: LUNAR
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 99.8760% [99.8324% - 99.9196%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: SAA
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 99.8800% [99.8371% - 99.9229%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: SOLAR_STORM
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 99.9200% [99.8850% - 99.9550%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 99.9560% [99.9300% - 99.9820%]
+  Bit-Level Voting         : 99.9560% [99.9300% - 99.9820%]
+  Word Error Voting        : 99.9560% [99.9300% - 99.9820%]
+  Burst Error Voting       : 99.9560% [99.9300% - 99.9820%]
+  Adaptive Voting          : 99.9560% [99.9300% - 99.9820%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 99.9560% [99.9300% - 99.9820%]
+  Fast Bit Correction      : 99.9560% [99.9300% - 99.9820%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+ENVIRONMENT: JUPITER
+--------------------------------------------------------------------------
+Error Type: SINGLE_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: MULTI_BIT
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: BURST
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: WORD
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
+  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
+  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
+  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
+  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
+  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 99.8600% [99.8137% - 99.9063%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+Error Type: COMBINED
+  Total Trials: 25000
+
+ORIGINAL METHODS:
+  Standard Voting          : 99.9960% [99.9882% - 100.0000%]
+  Bit-Level Voting         : 99.9960% [99.9882% - 100.0000%]
+  Word Error Voting        : 99.9960% [99.9882% - 100.0000%]
+  Burst Error Voting       : 99.9960% [99.9882% - 100.0000%]
+  Adaptive Voting          : 99.9960% [99.9882% - 100.0000%]
+
+ENHANCED METHODS:
+  Weighted Voting          : 99.9960% [99.9882% - 100.0000%]
+  Fast Bit Correction      : 99.9960% [99.9882% - 100.0000%]
+  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
+
+MEMORY PROTECTION:
+  Protected Value          : 100.0000% [100.0000% - 100.0000%]
+  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
+
+--------------------------------------------------------------------------
+
+==========================================================================
+DATA TYPE: int64_t
 ==========================================================================
 
 ENVIRONMENT: LEO
@@ -1215,1202 +2411,6 @@ MEMORY PROTECTION:
 --------------------------------------------------------------------------
 
 ==========================================================================
-DATA TYPE: int32_t
-==========================================================================
-
-ENVIRONMENT: LEO
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 99.8760% [99.8324% - 99.9196%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: GEO
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 99.8680% [99.8230% - 99.9130%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: LUNAR
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 99.8600% [99.8137% - 99.9063%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: SAA
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 99.8320% [99.7812% - 99.8828%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: SOLAR_STORM
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 99.9120% [99.8752% - 99.9488%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 99.9600% [99.9352% - 99.9848%]
-  Bit-Level Voting         : 99.9600% [99.9352% - 99.9848%]
-  Word Error Voting        : 99.9600% [99.9352% - 99.9848%]
-  Burst Error Voting       : 99.9600% [99.9352% - 99.9848%]
-  Adaptive Voting          : 99.9600% [99.9352% - 99.9848%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 99.9600% [99.9352% - 99.9848%]
-  Fast Bit Correction      : 99.9600% [99.9352% - 99.9848%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: JUPITER
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 99.8720% [99.8277% - 99.9163%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-==========================================================================
-DATA TYPE: int64_t
-==========================================================================
-
-ENVIRONMENT: LEO
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: GEO
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: LUNAR
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: SAA
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: SOLAR_STORM
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 99.9760% [99.9568% - 99.9952%]
-  Bit-Level Voting         : 99.9760% [99.9568% - 99.9952%]
-  Word Error Voting        : 99.9760% [99.9568% - 99.9952%]
-  Burst Error Voting       : 99.9760% [99.9568% - 99.9952%]
-  Adaptive Voting          : 99.9760% [99.9568% - 99.9952%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 99.9760% [99.9568% - 99.9952%]
-  Fast Bit Correction      : 99.9760% [99.9568% - 99.9952%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-ENVIRONMENT: JUPITER
---------------------------------------------------------------------------
-Error Type: SINGLE_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: MULTI_BIT
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: BURST
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: WORD
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
-Error Type: COMBINED
-  Total Trials: 25000
-
-ORIGINAL METHODS:
-  Standard Voting          : 100.0000% [100.0000% - 100.0000%]
-  Bit-Level Voting         : 100.0000% [100.0000% - 100.0000%]
-  Word Error Voting        : 100.0000% [100.0000% - 100.0000%]
-  Burst Error Voting       : 100.0000% [100.0000% - 100.0000%]
-  Adaptive Voting          : 100.0000% [100.0000% - 100.0000%]
-
-ENHANCED METHODS:
-  Weighted Voting          : 100.0000% [100.0000% - 100.0000%]
-  Fast Bit Correction      : 100.0000% [100.0000% - 100.0000%]
-  Pattern Detection        : 100.0000% [100.0000% - 100.0000%]
-
-MEMORY PROTECTION:
-  Protected Value          : 100.0000% [100.0000% - 100.0000%]
-  Aligned Memory           : 100.0000% [100.0000% - 100.0000%]
-
---------------------------------------------------------------------------
-
-==========================================================================
                              SUMMARY                                      
 ==========================================================================
 
@@ -2422,7 +2422,7 @@ ADAPTIVE VOTING:
 - LUNAR          : 100.0000% (PASS)
 - SAA            : 100.0000% (PASS)
 - SOLAR_STORM    : 100.0000% (PASS)
-- JUPITER        : 100.0000% (PASS)
+- JUPITER        : 99.9985% (PASS)
 
 ENHANCED PROTECTION:
 - LEO            : 100.0000% (PASS)
@@ -2430,11 +2430,11 @@ ENHANCED PROTECTION:
 - LUNAR          : 100.0000% (PASS)
 - SAA            : 100.0000% (PASS)
 - SOLAR_STORM    : 100.0000% (PASS)
-- JUPITER        : 100.0000% (PASS)
+- JUPITER        : 99.9990% (PASS)
 
 Overall Framework Readiness Level:
-- Original Success Rate: 100.0000%
-- Enhanced Success Rate: 100.0000%
+- Original Success Rate: 99.9998%
+- Enhanced Success Rate: 99.9998%
 - Framework Status: READY FOR MISSION DEPLOYMENT
 
 ==========================================================================

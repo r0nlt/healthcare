@@ -6,6 +6,7 @@
 **License:** GNU General Public License v3.0  
 **Repository:** https://github.com/r0nlt/Space-Radiation-Tolerant
 **Company Page** https://www.linkedin.com/company/space-labs-ai
+**Version:** v0.9.7
 
 
 A C++ framework for implementing machine learning models that can operate reliably in radiation environments, such as space. This framework implements industry-standard radiation tolerance techniques validated against NASA and ESA reference models. Our recent breakthrough (v0.9.3) demonstrates that properly designed neural networks can actually achieve improved performance under radiation conditions.
@@ -45,6 +46,8 @@ The Student Guide provides easy-to-follow steps for:
 - [Library Structure and Dependencies](#library-structure-and-dependencies)
 - [NASA Mission Compatibility and Standards Compliance](#nasa-mission-compatibility-and-standards-compliance)
 - [Recent Enhancements](#recent-enhancements)
+  - [Auto Architecture Search (v0.9.7)](#1-auto-architecture-search-enhancement-v097)
+  - [Auto Architecture Search Guide](AUTO_ARCH_SEARCH_GUIDE.md)
 - [Self-Monitoring Radiation Detection](#self-monitoring-radiation-detection)
 - [Industry Recognition and Benchmarks](#industry-recognition-and-benchmarks)
 - [Potential Applications](#potential-applications)
@@ -58,6 +61,8 @@ The Student Guide provides easy-to-follow steps for:
 - [Contributing](#contributing)
 - [Versioning](#versioning)
 - [Release History](#release-history)
+  - [Current Version: v0.9.7 - Auto Architecture Search Enhancement](#release-history)
+  - [Previous Versions: See VERSION_HISTORY.md](#release-history)
 - [Contact Information](#contact-information)
 - [Citation Information](#citation-information)
 
@@ -692,43 +697,57 @@ The framework has been designed and tested in alignment with the following space
 
 The framework has recently been enhanced with several significant features:
 
-### 1. Galois Field Implementation
+### 1. Auto Architecture Search Enhancement (v0.9.7)
+- Fixed critical bug in the architecture testing framework where all configurations produced identical performance metrics
+- Implemented architecture-based performance modeling with physics-inspired radiation impact formulas
+- Added proper random seed generation for reliable Monte Carlo testing across different architectures
+- Created environment-specific radiation impact profiles for all supported space environments
+- Developed protection level effectiveness modeling based on protection mechanism
+- Enhanced Monte Carlo statistics with standard deviation reporting for better reliability assessment
+- Validated the framework with experimental testing across multiple network architectures
+- Added debugging outputs for better visibility into architecture performance under radiation
+- Achieved meaningful differentiation between network architectures under various radiation conditions
+- Demonstrated proper interaction between network complexity, protection levels, and radiation tolerance
+
+**For detailed usage of this feature, see the [Auto Architecture Search Guide](AUTO_ARCH_SEARCH_GUIDE.md).**
+
+### 2. Galois Field Implementation
 - Added `GaloisField` template class enabling efficient finite field arithmetic
 - Optimized for 4-bit and 8-bit symbol representations common in neural networks
 - Implemented lookup tables for performance-critical operations
 - Support for polynomial operations necessary for Reed-Solomon ECC
 
-### 2. Advanced Reed-Solomon Error Correction
+### 3. Advanced Reed-Solomon Error Correction
 - Implemented configurable Reed-Solomon encoder/decoder
 - Support for various symbol sizes (4-bit, 8-bit) and code rates
 - Interleaving capabilities for burst error resilience
 - Achieves 96.40% error correction with RS(12,8) using 4-bit symbols
 
-### 3. Adaptive Protection System
+### 4. Adaptive Protection System
 - Dynamic protection level selection based on radiation environment
 - Weight criticality analysis for targeted protection of sensitive parameters
 - Error statistics tracking and analysis for protection optimization
 - Environment-aware adaptation for balanced protection/performance
 
-### 4. Comprehensive Monte Carlo Validation
+### 5. Comprehensive Monte Carlo Validation
 - Simulates neural networks under various radiation environments
 - Tests all protection strategies across different error models
 - Gathers detailed statistics on error detection, correction, and performance impact
 - Validates protection effectiveness in conditions from LEO to Solar Probe missions
 
-### 5. Protection Strategy Insights
+### 6. Protection Strategy Insights
 - Discovered that moderate protection (50% overhead) outperforms very high protection (200% overhead) in extreme radiation environments
 - Validated that 4-bit Reed-Solomon symbols provide better correction/overhead ratio than 8-bit symbols
 - Confirmed the effectiveness of adaptive protection in balancing resources and reliability
 
-### 6. Neural Network Fine-Tuning Framework
+### 7. Neural Network Fine-Tuning Framework
 - Implemented a comprehensive neural network fine-tuning system for radiation environments
 - Discovered that wider architectures (32-16) have inherent radiation tolerance without explicit protection
 - Demonstrated that networks with high dropout (0.5) show enhanced radiation resilience
 - Achieved 146.84% accuracy preservation in Mars environment with zero protection overhead
 - Developed techniques to optimize neural network design based on specific mission radiation profiles
 
-### 7. Quantum Field Theory Integration
+### 8. Quantum Field Theory Integration
 - Added quantum field theory models for more accurate defect propagation predictions
 - Implemented adaptive quantum correction system that applies enhancements only when appropriate
 - Developed material-specific quantum parameter calibration for silicon, germanium, and GaAs
@@ -737,7 +756,7 @@ The framework has recently been enhanced with several significant features:
 - Achieved significant accuracy improvements in extreme conditions (cold temperatures, nanoscale devices)
 - Comprehensive test suite validating quantum corrections across temperature ranges and device sizes
 
-### 8. Memory Safety & Radiation-Tolerant Execution (v0.9.6)
+### 9. Memory Safety & Radiation-Tolerant Execution (v0.9.6)
 Our latest research has yielded significant enhancements in memory safety for radiation environments:
 
 - **Robust Mutex Protection**: Advanced exception handling for mutex operations vulnerable to radiation-induced corruption
@@ -1162,75 +1181,17 @@ Current version: 0.9.3 (Pre-release)
 
 ## Release History
 
-- **v0.9.6** (May 11 , 2025) - Enhanced Memory Safety & Mission Simulation Resilience
-  - Implemented robust memory safety mechanisms for radiation-induced corruption
-  - Added advanced exception handling for mutex and memory access failures
-  - Developed safer TMR access patterns to prevent segmentation faults in high radiation
-  - Redesigned memory region registration with static safety guarantees
-  - Enhanced neural network inference with graceful degradation under radiation stress
-  - Improved error stats collection with better resilience to corrupted mutexes
-  - Fixed simulation stability with proper memory management for radiation-affected systems
-  - Validated in comprehensive mission simulations with 95% error correction rates
-  - Successfully demonstrated neural network resilience to over 180 radiation events
-  - Achieved 100% mission completion rate even under extreme radiation conditions
+- **v0.9.7** (May 12, 2025) - Auto Architecture Search Enhancement
+  - Fixed critical bug in the architecture testing framework where all configurations produced identical performance metrics
+  - Implemented architecture-based performance modeling with physics-inspired radiation impact formulas
+  - Added proper random seed generation for reliable Monte Carlo testing
+  - Created environment-specific radiation impact profiles for all supported environments
+  - Developed protection level effectiveness modeling based on protection mechanism
+  - Enhanced Monte Carlo statistics with standard deviation reporting
+  - Validated framework with experimental testing across multiple architectures
+  - Demonstrated proper interaction between network complexity and radiation tolerance
 
-- **v0.9.5** (May 10, 2025)
-  - Added Python bindings for core functionality
-  - Implemented Triple Modular Redundancy (TMR) in Python with demonstration scripts
-  - Enhanced error simulation capabilities with bit-flip simulation
-  - Improved validation tools for demonstrating radiation protection
-  - Added support for protecting both integers and floating-point values in Python
-  - Full documentation for Python integration
-  - License has also been changed please be aware!
-
-- **v0.9.4** (April 15, 2025)
- - Implemented robust gradient size mismatch detection and handling mechanism
- - Added heap buffer overflow prevention through safety checks
- - Developed intelligent sample skipping instead of risky gradient resizing
- - Achieved 100% accuracy preservation under simulated radiation conditions
- - Validated zero performance impact with negligible computational overhead
- - Proven effective framework stability with 30% of samples experiencing radiation-induced errors
- - Demonstrated that skipping corrupted samples is more effective than complex error correction
- - Successfully maintained training stability in high-radiation conditions
-
-- **v0.9.3** (2025-05-8) - Neural Network Fine-Tuning Breakthrough
-  - Discovered counterintuitive neural network behavior under radiation (146.84% accuracy preservation)
-  - Implemented comprehensive neural network fine-tuning framework for radiation environments
-  - Conducted extensive Monte Carlo testing (3,240 configurations) across multiple environments
-  - Demonstrated that wider architectures (32-16) have inherent radiation tolerance without protection
-  - Validated that networks with high dropout (0.5) show significantly enhanced radiation resilience
-  - Achieved improved performance under Mars radiation conditions with zero protection overhead
-  - Added architecture-based optimization tools for mission-specific neural network design
-  - Created auto-tuning system for optimal dropout rates based on radiation environments
-  - Developed visualization tools for radiation sensitivity across network layers
-  - Published comprehensive results in `optimized_fine_tuning_results.csv`
-
-- **v0.9.2** (2025-05-08) - Enhanced Radiation Protection & Monte Carlo Validation
-  - Added `GaloisField` template class for efficient finite field arithmetic
-  - Implemented `AdvancedReedSolomon` encoder/decoder with 96.40% error correction
-  - Developed `AdaptiveProtection` system with dynamic environment-based adjustment
-  - Comprehensive Monte Carlo validation across space radiation environments
-  - Discovered counter-intuitive protection behavior in extreme radiation conditions
-  - Optimized Reed-Solomon with 4-bit symbols for neural network protection
-  - Reduced overhead from 200-300% to 50-75% while maintaining protection
-  - Validated framework in LEO to Solar Probe radiation conditions
-  - Updated benchmarks and performance metrics with real-world testing
-  - Complete documentation of framework architecture and API
-
-- **v0.9.1** (2025-05-7) - Enhanced Validation & Documentation
-  - Enhanced voting mechanism with adaptive fault pattern recognition
-  - Comprehensive statistical validation (3,000,000+ trials across test scenarios)
-  - Expanded NASA/ESA standards compliance documentation
-  - Detailed benchmarking against industry solutions
-  - Practical use cases and mission scenarios
-  - Technical architecture documentation
-  - Solar storm environment performance validation (99.953% accuracy)
-
-- **v0.9.0** (2025-05-06) - Initial pre-release
-  - Core TMR implementations
-  - Basic radiation simulation
-  - Initial NASA/ESA validation
-  - Framework architecture established
+For a complete history of previous releases, please see the [VERSION_HISTORY.md](VERSION_HISTORY.md) file.
 
 ## Contact Information
 
@@ -1264,82 +1225,6 @@ BibTeX:
 ```
 
 If you've published a paper describing this work, ensure to update the citation information accordingly.
-
-## Recent Enhancements
-
-The framework has recently been enhanced with several significant features:
-
-### 1. Galois Field Implementation
-- Added `GaloisField` template class enabling efficient finite field arithmetic
-- Optimized for 4-bit and 8-bit symbol representations common in neural networks
-- Implemented lookup tables for performance-critical operations
-- Support for polynomial operations necessary for Reed-Solomon ECC
-
-### 2. Advanced Reed-Solomon Error Correction
-- Implemented configurable Reed-Solomon encoder/decoder
-- Support for various symbol sizes (4-bit, 8-bit) and code rates
-- Interleaving capabilities for burst error resilience
-- Achieves 96.40% error correction with RS(12,8) using 4-bit symbols
-
-### 3. Adaptive Protection System
-- Dynamic protection level selection based on radiation environment
-- Weight criticality analysis for targeted protection of sensitive parameters
-- Error statistics tracking and analysis for protection optimization
-- Environment-aware adaptation for balanced protection/performance
-
-### 4. Comprehensive Monte Carlo Validation
-- Simulates neural networks under various radiation environments
-- Tests all protection strategies across different error models
-- Gathers detailed statistics on error detection, correction, and performance impact
-- Validates protection effectiveness in conditions from LEO to Solar Probe missions
-
-### 5. Protection Strategy Insights
-- Discovered that moderate protection (50% overhead) outperforms very high protection (200% overhead) in extreme radiation environments
-- Validated that 4-bit Reed-Solomon symbols provide better correction/overhead ratio than 8-bit symbols
-- Confirmed the effectiveness of adaptive protection in balancing resources and reliability
-
-### 6. Neural Network Fine-Tuning Framework
-- Implemented a comprehensive neural network fine-tuning system for radiation environments
-- Discovered that wider architectures (32-16) have inherent radiation tolerance without explicit protection
-- Demonstrated that networks with high dropout (0.5) show enhanced radiation resilience
-- Achieved 146.84% accuracy preservation in Mars environment with zero protection overhead
-- Developed techniques to optimize neural network design based on specific mission radiation profiles
-
-### 7. Quantum Field Theory Integration
-- Added quantum field theory models for more accurate defect propagation predictions
-- Implemented adaptive quantum correction system that applies enhancements only when appropriate
-- Developed material-specific quantum parameter calibration for silicon, germanium, and GaAs
-- Threshold-based decision logic for quantum effects based on temperature, feature size, and radiation
-- Detailed visualization and analysis tools for quantum enhancement validation
-- Achieved significant accuracy improvements in extreme conditions (cold temperatures, nanoscale devices)
-- Comprehensive test suite validating quantum corrections across temperature ranges and device sizes
-
-### 8. Memory Safety & Radiation-Tolerant Execution (v0.9.6)
-Our latest research has yielded significant enhancements in memory safety for radiation environments:
-
-- **Robust Mutex Protection**: Advanced exception handling for mutex operations vulnerable to radiation-induced corruption
-- **Safe Memory Access Patterns**: Redesigned TMR access with proper null checks and corruption detection
-- **Static Memory Registration**: Enhanced memory region registration with static allocation guarantees
-- **Graceful Degradation**: Neural networks now continue functioning even when portions of memory are corrupted
-- **Thread-Safe Error Reporting**: Improved error statistics collection that remains operational even after memory corruption
-- **Safe Value Recovery**: Enhanced value recovery from corrupted protected variables using tryGet() with optional return
-- **Memory Region Isolation**: Better isolation of critical memory regions from volatile sections
-- **Comprehensive Mission Testing**: Validated with 95% error correction rates in intense radiation simulations
-- **Radiation-Hardened Operations**: Critical operations now use multiple layers of protection to ensure completion
-
-These enhancements significantly improve the framework's resilience to radiation-induced memory corruption, directly addressing segmentation faults and other catastrophic failure modes observed in high-radiation environments. The system now achieves 100% mission completion rates even under extreme radiation conditions that previously caused system failures.
-
-### Gradient Size Mismatch Protection (v0.9.4)
-The framework now includes a robust gradient size mismatch detection and handling mechanism that significantly improves neural network reliability in radiation environments:
-
-- **Heap Buffer Overflow Prevention**: Critical safety checks detect gradient size mismatches before application, preventing memory corruption
-- **Intelligent Sample Skipping**: Instead of attempting risky gradient resizing, the system safely skips affected samples
-- **Perfect Accuracy Preservation**: Testing demonstrates 100% accuracy preservation under simulated radiation conditions
-- **Zero Performance Impact**: Protection mechanism adds negligible computational overhead while providing significant safety benefits
-
-This enhancement addresses a critical vulnerability in neural network training pipelines where radiation effects can cause gradient dimensions to unexpectedly change, potentially leading to system crashes or unpredictable behavior.
-
-These enhancements significantly improve the framework's capabilities for protecting neural networks in radiation environments, while offering better performance and resource utilization than previous versions.
 
 ## Validation Results
 
