@@ -13,7 +13,10 @@ This document provides detailed explanations of each library in the Radiation-To
 7. [Error Handling](#error-handling)
 8. [Hardware Abstraction Layer](#hardware-abstraction-layer)
 9. [Advanced Features](#advanced-features)
-10. [Python Bindings](#python-bindings)
+10. [Power-Aware Protection](#power-aware-protection)
+11. [Mission Simulation](#mission-simulation)
+12. [Testing Infrastructure](#testing-infrastructure)
+13. [Python Bindings](#python-bindings)
 
 ## Core Libraries
 
@@ -469,6 +472,308 @@ Power-optimized protection strategies.
 - `optimizeProtection()`: Optimize protection for power constraints
 - `getPowerConsumption()`: Get estimated power consumption
 - `adaptToEnvironment()`: Adapt protection based on environment
+
+## Power-Aware Protection
+
+### `rad_ml::power::PowerAwareProtection`
+
+Comprehensive power-optimized protection strategies designed specifically for resource-constrained space applications.
+
+**Key Features:**
+- Dynamic power consumption modeling and optimization
+- Adaptive protection based on real-time power budget constraints
+- Fine-grained power-reliability tradeoff management
+- Mission phase-aware protection scaling
+- Hardware-specific power profiling
+
+**Important Methods:**
+- `setPowerBudget(double budget_mW)`: Set available power budget in milliwatts
+- `optimizeProtection(OptimizationGoal goal)`: Optimize protection based on goal (MAX_RELIABILITY, MIN_POWER, BALANCED)
+- `getPowerConsumption()`: Get detailed power consumption breakdown by protection subsystem
+- `adaptToEnvironment(RadiationEnvironment env)`: Dynamically adapt power allocation based on environment
+- `setDeviceThermalModel(const ThermalModel& model)`: Configure device-specific thermal characteristics
+
+**Usage Example:**
+```cpp
+#include "rad_ml/power/power_aware_protection.hpp"
+
+// Create a power-aware protection manager
+rad_ml::power::PowerAwareProtection pap;
+
+// Set available power budget (10mW for protection)
+pap.setPowerBudget(10.0);  // milliwatts
+
+// Set device thermal characteristics
+rad_ml::power::ThermalModel thermal_model;
+thermal_model.max_operating_temp = 85.0;  // Celsius
+thermal_model.thermal_resistance = 10.0;  // C/W
+thermal_model.active_cooling = false;
+pap.setDeviceThermalModel(thermal_model);
+
+// Configure adaptive strategy
+rad_ml::power::AdaptiveConfig config;
+config.optimization_goal = rad_ml::power::OptimizationGoal::BALANCED;
+config.min_reliability = 0.9999;  // 4-nines reliability minimum
+config.critical_subsystems = {"memory", "neural_inference"};
+pap.configureAdaptiveStrategy(config);
+
+// At regular intervals or based on events
+pap.adaptToEnvironment(rad_ml::sim::RadiationEnvironment::MARS);
+
+// Get power consumption stats
+auto power_stats = pap.getPowerConsumption();
+std::cout << "Total power usage: " << power_stats.total_mW << " mW" << std::endl;
+std::cout << "TMR subsystem: " << power_stats.by_subsystem["tmr"] << " mW" << std::endl;
+std::cout << "ECC subsystem: " << power_stats.by_subsystem["ecc"] << " mW" << std::endl;
+```
+
+### `rad_ml::power::DynamicVoltageScaling`
+
+Implements dynamic voltage and frequency scaling (DVFS) techniques for protection circuitry.
+
+**Key Features:**
+- Voltage-dependent bit error rate modeling
+- Frequency-dependent computing capability modeling
+- Energy-optimal protection circuit adaptation
+- Fine-grained control of Vdd for different protection domains
+
+**Important Methods:**
+- `setVoltageRange(double min_v, double max_v)`: Set operating voltage range
+- `setFrequencyRange(double min_hz, double max_hz)`: Set operating frequency range
+- `getOptimalOperatingPoint(double error_tolerance)`: Calculate optimal V/F for given error tolerance
+- `applyConfiguration(const DVFSConfig& config)`: Apply specific voltage/frequency settings
+
+### `rad_ml::power::PowerConsumptionModel`
+
+Sophisticated power consumption modeling for radiation-hardened components.
+
+**Key Features:**
+- Detailed power modeling for TMR registers, combinatorial logic, and memory
+- Device-specific calibration capabilities
+- Temperature-dependent leakage current models
+- Activity-based dynamic power estimation
+
+**Important Methods:**
+- `calibrateWithRealDevice(const CalibrationData& data)`: Calibrate model with real device measurements
+- `estimatePower(const ProtectionConfiguration& config)`: Estimate power for a protection configuration
+- `analyzePowerBreakdown()`: Get detailed power breakdown by component type
+- `estimateBatteryLifetime(double battery_capacity_mWh)`: Estimate battery lifetime
+
+## Mission Simulation
+
+### `rad_ml::mission::MissionProfile`
+
+Comprehensive mission profile modeling for space applications.
+
+**Key Features:**
+- Detailed mission timeline with phase-specific radiation environments
+- Orbital mechanics and trajectory modeling
+- Multi-phase mission planning with varying protection requirements
+- Failure probability calculations across mission phases
+
+**Important Classes:**
+- `rad_ml::mission::MissionPhase`: Individual mission phase configuration
+- `rad_ml::mission::TrajectoryModel`: Orbital or interplanetary trajectory modeling
+- `rad_ml::mission::ResourceBudget`: Power, memory, and compute budgets by phase
+- `rad_ml::mission::RadioactiveSourceModel`: RTG or external radiation source modeling
+
+**Usage Example:**
+```cpp
+#include "rad_ml/mission/mission_profile.hpp"
+
+// Create a Mars mission profile
+auto mars_mission = rad_ml::mission::MissionProfileFactory::createMarsMission();
+
+// Add custom mission phases
+mars_mission->addPhase(rad_ml::mission::MissionPhase{
+    .name = "deep_space_cruise",
+    .duration_days = 180,
+    .environment = rad_ml::sim::RadiationEnvironment::DEEP_SPACE,
+    .shielding_mm_al_eq = 10.0,
+    .critical_systems = {"guidance_computer", "life_support"},
+    .power_budget_mW = 5000
+});
+
+// Add landing phase with different requirements
+mars_mission->addPhase(rad_ml::mission::MissionPhase{
+    .name = "mars_entry_descent_landing",
+    .duration_hours = 7,
+    .environment = rad_ml::sim::RadiationEnvironment::MARS_ATMOSPHERE,
+    .shielding_mm_al_eq = 8.0,
+    .critical_systems = {"all"},
+    .power_budget_mW = 25000,
+    .required_reliability = 0.99999  // Five nines for EDL
+});
+
+// Run mission simulation
+auto sim_results = mars_mission->simulate(
+    1000,  // Monte Carlo iterations
+    rad_ml::testing::FaultModelLibrary::getSolarParticleEvent(200)  // Add solar event
+);
+
+// Analyze results
+std::cout << "Mission success probability: " << sim_results.success_probability << std::endl;
+std::cout << "Critical failure points:" << std::endl;
+for (const auto& failure : sim_results.failure_points) {
+    std::cout << " - " << failure.phase_name << ": " << failure.probability << std::endl;
+}
+```
+
+### `rad_ml::testing::MissionSimulator`
+
+High-fidelity mission simulation with radiation environment effects.
+
+**Key Features:**
+- Full-system simulation of radiation effects on spacecraft electronics
+- Monte Carlo analysis for mission success probability
+- Component-level fault injection based on physics models
+- Detailed telemetry recording and analysis
+- Validation against real space mission data
+
+**Important Methods:**
+- `configureMission(const MissionProfile& profile)`: Configure mission parameters
+- `setRadiationModels(const std::vector<RadiationModel>& models)`: Set radiation environment models
+- `runSimulation(int iterations = 1000)`: Run Monte Carlo simulation
+- `getDetailedResults()`: Get comprehensive simulation results
+- `exportTelemetry(const std::string& filename)`: Export telemetry data
+
+### `rad_ml::mission::ValidationFramework`
+
+Framework for validating mission-critical algorithms against radiation effects.
+
+**Key Features:**
+- NASA/ESA standards compliance testing
+- Automated validation of protection strategies
+- Statistical confidence level reporting
+- Mission-specific validation criteria
+
+**Important Methods:**
+- `validateAlgorithm(const Algorithm& algo, ValidationCriteria criteria)`: Validate an algorithm
+- `compareProtectionStrategies(const std::vector<ProtectionStrategy>& strategies)`: Compare strategies
+- `generateComplianceReport(ComplianceStandard standard)`: Generate standard compliance report
+
+## Testing Infrastructure
+
+### `rad_ml::testing::FaultInjector`
+
+Sophisticated fault injection framework for comprehensive testing.
+
+**Key Features:**
+- Bit-flip, stuck-at-fault, and timing error injection
+- Deterministic and stochastic fault models
+- Hardware-accelerated fault injection for large-scale testing
+- Realistic space radiation fault patterns
+- Custom fault distribution modeling
+
+**Important Classes:**
+- `rad_ml::testing::SEUModel`: Single Event Upset model
+- `rad_ml::testing::MBUModel`: Multiple Bit Upset model
+- `rad_ml::testing::SELModel`: Single Event Latchup model
+- `rad_ml::testing::TimingFaultModel`: Timing fault model
+
+**Usage Example:**
+```cpp
+#include "rad_ml/testing/fault_injector.hpp"
+
+// Create a fault injector with specific models
+rad_ml::testing::FaultInjector injector;
+
+// Configure SEU model based on LEO environment
+auto seu_model = rad_ml::testing::SEUModelFactory::createForEnvironment(
+    rad_ml::sim::RadiationEnvironment::LEO,
+    0.8  // Solar activity factor (0.0-1.0)
+);
+injector.addFaultModel(seu_model);
+
+// Add MBU model with custom parameters
+auto mbu_model = std::make_shared<rad_ml::testing::MBUModel>();
+mbu_model->setMultiplicity(4);  // 4-bit upsets
+mbu_model->setGeometricDistribution(0.7);  // Adjacent bits more likely
+mbu_model->setProbability(0.05);  // 5% of all upsets are MBUs
+injector.addFaultModel(mbu_model);
+
+// Create a target vector for testing
+std::vector<float> test_data(1000, 3.14159f);
+
+// Inject faults based on models
+injector.injectFaults(test_data.data(), test_data.size() * sizeof(float));
+
+// Analyze bit error statistics
+auto error_stats = injector.getErrorStatistics();
+std::cout << "Total bit flips: " << error_stats.total_bit_flips << std::endl;
+std::cout << "MBUs: " << error_stats.multiple_bit_upsets << std::endl;
+```
+
+### `rad_ml::testing::BenchmarkFramework`
+
+Comprehensive benchmarking suite for radiation-tolerant implementations.
+
+**Key Features:**
+- Standardized performance metrics for radiation-hardened algorithms
+- Power consumption measurement infrastructure
+- Resource utilization benchmarking (memory, CPU, accelerator)
+- Cross-platform benchmark compatibility
+
+**Important Methods:**
+- `registerBenchmark(const std::string& name, BenchmarkFn fn)`: Register a benchmark function
+- `runAll(BenchmarkConfig config)`: Run all registered benchmarks
+- `compareImplementations(const std::vector<std::string>& impls)`: Compare different implementations
+- `generateReport(ReportFormat format)`: Generate benchmark report
+
+### `rad_ml::testing::ValidationSuite`
+
+Industry-standard validation suite for radiation-tolerant systems.
+
+**Key Features:**
+- Automated validation against NASA/ESA radiation standards
+- Comprehensive test scenarios based on real missions
+- Statistical validation with confidence intervals
+- Compliance reporting for certification
+
+**Important Methods:**
+- `configureValidation(ValidationConfig config)`: Configure validation parameters
+- `validateComponent(const Component& component)`: Validate a specific component
+- `runFullSuite()`: Run the complete validation suite
+- `generateComplianceReport()`: Generate certification-ready report
+
+**Usage Example:**
+```cpp
+#include "rad_ml/testing/validation_suite.hpp"
+
+// Create validation suite with NASA standards
+auto validation = rad_ml::testing::ValidationSuiteFactory::createNASACompliant();
+
+// Configure for specific mission class
+validation.configureValidation({
+    .mission_class = rad_ml::testing::MissionClass::CLASS_B,
+    .radiation_environment = rad_ml::sim::RadiationEnvironment::JUPITER,
+    .mission_duration_years = 6.0,
+    .confidence_level = 0.99,
+    .enable_accelerated_testing = true
+});
+
+// Define component under test
+rad_ml::testing::Component neural_inference_engine{
+    .name = "Vision Neural Engine",
+    .protection_strategy = "selective_tmr_with_ecc_memory",
+    .critical_level = rad_ml::testing::CriticalityLevel::MISSION_CRITICAL
+};
+
+// Run validation
+auto results = validation.validateComponent(neural_inference_engine);
+
+// Check results
+if (results.passed) {
+    std::cout << "Validation passed with confidence level: " 
+              << results.confidence_level << std::endl;
+} else {
+    std::cout << "Validation failed. Issues found:" << std::endl;
+    for (const auto& issue : results.issues) {
+        std::cout << " - " << issue.description 
+                  << " (severity: " << issue.severity << ")" << std::endl;
+    }
+}
+```
 
 ## Python Bindings
 
