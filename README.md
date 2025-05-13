@@ -46,6 +46,8 @@ The Student Guide provides easy-to-follow steps for:
 - [Library Structure and Dependencies](#library-structure-and-dependencies)
 - [NASA Mission Compatibility and Standards Compliance](#nasa-mission-compatibility-and-standards-compliance)
 - [Recent Enhancements](#recent-enhancements)
+  - [Auto Architecture Search (v0.9.7)](#1-auto-architecture-search-enhancement-v097)
+  - [Auto Architecture Search Guide](AUTO_ARCH_SEARCH_GUIDE.md)
 - [Self-Monitoring Radiation Detection](#self-monitoring-radiation-detection)
 - [Industry Recognition and Benchmarks](#industry-recognition-and-benchmarks)
 - [Potential Applications](#potential-applications)
@@ -706,6 +708,8 @@ The framework has recently been enhanced with several significant features:
 - Added debugging outputs for better visibility into architecture performance under radiation
 - Achieved meaningful differentiation between network architectures under various radiation conditions
 - Demonstrated proper interaction between network complexity, protection levels, and radiation tolerance
+
+**For detailed usage of this feature, see the [Auto Architecture Search Guide](AUTO_ARCH_SEARCH_GUIDE.md).**
 
 ### 2. Galois Field Implementation
 - Added `GaloisField` template class enabling efficient finite field arithmetic

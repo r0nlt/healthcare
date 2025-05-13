@@ -2,6 +2,10 @@
 
 This guide provides simple instructions for building and testing the Radiation Tolerant ML framework. The provided scripts and commands are designed to make the development process easier for students.
 
+## Version Information
+
+The current version is **v0.9.7**, which includes enhanced auto architecture search functionality for finding optimal neural network configurations for radiation environments.
+
 ## Installation
 
 Before you can build and run the code, you need to install some dependencies:
@@ -94,9 +98,26 @@ These are the main examples available in the framework:
 
 - `quantum_field_example`
 - `architecture_test`
+- `auto_arch_search_example` (New in v0.9.7 - Test the auto architecture search enhancement)
 - `residual_network_test`
 - `simple_nn`
 - `mission_simulator`
+
+## New in v0.9.7: Auto Architecture Search
+
+The v0.9.7 release adds a powerful auto architecture search capability that helps find optimal neural network architectures for specific radiation environments. To run this feature:
+
+```bash
+make -f Makefile.simple example-auto_arch_search_example
+```
+
+This will demonstrate:
+- Finding optimal neural network configurations for radiation tolerance
+- Monte Carlo testing of architectures with various parameters
+- Performance comparison between different neural network designs
+- Analysis of how architecture impacts radiation tolerance
+
+The results will be saved to CSV files for further analysis.
 
 ## Manual Commands
 
