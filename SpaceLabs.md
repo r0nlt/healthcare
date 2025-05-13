@@ -12,6 +12,14 @@ This document will help you understand our flagship product: the Radiation-Toler
 
 The Radiation-Tolerant ML Framework is a C++ library that implements industry-standard radiation tolerance techniques validated against NASA and ESA reference models. Our breakthrough technology demonstrates that properly designed neural networks can maintain and even enhance performance under radiation conditions.
 
+### Current Version
+
+```
+Version: 0.9.6
+```
+
+The framework is under active development, with regular updates and new features. Version 0.9.6 includes enhanced quantum field theory models, improved neural network protection strategies, and optimized memory management.
+
 ### Core Components
 
 1. **Protection Libraries**
