@@ -3,7 +3,7 @@
 **Author:** Rishab Nuguru  
 **Original Copyright:** © 2025 Rishab Nuguru
 **Company:** Space Labs AI   
-**License:** GNU General Public License v3.0  
+**License:** GPL General Public License v3.0  
 **Repository:** https://github.com/r0nlt/Space-Radiation-Tolerant
 **Company Page** https://www.linkedin.com/company/space-labs-ai
 **Version:** v0.9.7
