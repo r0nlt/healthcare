@@ -1,4 +1,0 @@
-Architecture,Dropout,HasResidual,ProtectionLevel,Environment,BaselineAccuracy,RadiationAccuracy,AccuracyPreservation,ExecutionTime,ErrorsDetected,ErrorsCorrected,UncorrectableErrors
-4-16-3,0.2,No,None,4,75.00,65.00,86.70,100.00,10,8,2
-4-16-3,0.2,No,None,4,75.00,65.00,86.70,100.00,10,8,2
-4-32-3,0.00,No,None,4,75.00,65.00,86.70,100.00,10,8,2

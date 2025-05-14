@@ -21,6 +21,7 @@
 #include <algorithm>
 
 #include "../core/redundancy/space_enhanced_tmr.hpp"
+#include "../core/logger.hpp"
 #include "multi_bit_protection.hpp"
 
 namespace rad_ml {
@@ -94,6 +95,14 @@ template <typename T = float>
 class ProtectedNeuralNetwork : public NetworkModel {
 public:
     /**
+     * @brief Layer structure containing weights and biases
+     */
+    struct Layer {
+        std::vector<std::vector<T>> weights;
+        std::vector<T> biases;
+    };
+
+    /**
      * @brief Constructor
      * 
      * @param layer_sizes Vector containing the size of each layer (including input and output)
@@ -115,6 +124,94 @@ public:
         
         // Initialize network structure
         initializeNetwork();
+    }
+    
+    /**
+     * @brief Copy constructor
+     * 
+     * @param other Network to copy
+     */
+    ProtectedNeuralNetwork(const ProtectedNeuralNetwork& other)
+        : layer_sizes_(other.layer_sizes_),
+          protection_level_(other.protection_level_),
+          check_counter_(other.check_counter_),
+          error_stats_(other.error_stats_),
+          activation_functions_(other.activation_functions_),
+          layers_(other.layers_)
+    {
+        // Copy weights and biases with protection
+        weights_.resize(other.weights_.size());
+        for (size_t i = 0; i < other.weights_.size(); ++i) {
+            weights_[i].resize(other.weights_[i].size());
+            for (size_t j = 0; j < other.weights_[i].size(); ++j) {
+                weights_[i][j].resize(other.weights_[i][j].size());
+                for (size_t k = 0; k < other.weights_[i][j].size(); ++k) {
+                    if constexpr (std::is_same_v<WeightType, T>) {
+                        weights_[i][j][k] = other.weights_[i][j][k];
+                    } else {
+                        weights_[i][j][k] = WeightType(other.weights_[i][j][k]);
+                    }
+                }
+            }
+        }
+        
+        biases_.resize(other.biases_.size());
+        for (size_t i = 0; i < other.biases_.size(); ++i) {
+            biases_[i].resize(other.biases_[i].size());
+            for (size_t j = 0; j < other.biases_[i].size(); ++j) {
+                if constexpr (std::is_same_v<WeightType, T>) {
+                    biases_[i][j] = other.biases_[i][j];
+                } else {
+                    biases_[i][j] = WeightType(other.biases_[i][j]);
+                }
+            }
+        }
+    }
+    
+    /**
+     * @brief Copy assignment operator
+     * 
+     * @param other Network to copy
+     * @return This network
+     */
+    ProtectedNeuralNetwork& operator=(const ProtectedNeuralNetwork& other) {
+        if (this != &other) {
+            layer_sizes_ = other.layer_sizes_;
+            protection_level_ = other.protection_level_;
+            check_counter_ = other.check_counter_;
+            error_stats_ = other.error_stats_;
+            activation_functions_ = other.activation_functions_;
+            layers_ = other.layers_;
+            
+            // Copy weights and biases with protection
+            weights_.resize(other.weights_.size());
+            for (size_t i = 0; i < other.weights_.size(); ++i) {
+                weights_[i].resize(other.weights_[i].size());
+                for (size_t j = 0; j < other.weights_[i].size(); ++j) {
+                    weights_[i][j].resize(other.weights_[i][j].size());
+                    for (size_t k = 0; k < other.weights_[i][j].size(); ++k) {
+                        if constexpr (std::is_same_v<WeightType, T>) {
+                            weights_[i][j][k] = other.weights_[i][j][k];
+                        } else {
+                            weights_[i][j][k] = WeightType(other.weights_[i][j][k]);
+                        }
+                    }
+                }
+            }
+            
+            biases_.resize(other.biases_.size());
+            for (size_t i = 0; i < other.biases_.size(); ++i) {
+                biases_[i].resize(other.biases_[i].size());
+                for (size_t j = 0; j < other.biases_[i].size(); ++j) {
+                    if constexpr (std::is_same_v<WeightType, T>) {
+                        biases_[i][j] = other.biases_[i][j];
+                    } else {
+                        biases_[i][j] = WeightType(other.biases_[i][j]);
+                    }
+                }
+            }
+        }
+        return *this;
     }
     
     /**
@@ -162,6 +259,9 @@ public:
      */
     std::vector<T> forward(const std::vector<T>& input, double radiation_level = 0.0) {
         if (input.size() != getInputSize()) {
+            core::Logger::error("Input size mismatch in forward pass");
+            core::Logger::error("Expected input size: " + std::to_string(getInputSize()) + 
+                              ", Actual input size: " + std::to_string(input.size()));
             throw std::invalid_argument("Input size does not match network input layer");
         }
         
@@ -375,6 +475,153 @@ public:
         error_stats_.uncorrectable_errors = 0;
     }
     
+    /**
+     * @brief Get the network layers
+     * 
+     * @return Layers of the network
+     */
+    const std::vector<Layer>& getLayers() const {
+        return layers_;
+    }
+
+    /**
+     * @brief Get mutable access to the network layers
+     * 
+     * @return Mutable reference to layers
+     */
+    std::vector<Layer>& getLayers() {
+        return layers_;
+    }
+
+    /**
+     * @brief Train the network using the provided data
+     * 
+     * @param data Training data
+     * @param labels Training labels
+     * @param epochs Number of training epochs
+     * @param batch_size Batch size for training
+     * @param learning_rate Learning rate for training
+     * @return Final training loss
+     */
+    float train(
+        const std::vector<T>& data,
+        const std::vector<T>& labels,
+        int epochs = 10,
+        int batch_size = 32,
+        float learning_rate = 0.01f) 
+    {
+        // Simple placeholder implementation for training
+        // In a real implementation, this would perform backpropagation
+        float loss = 0.0f;
+        
+        // Basic implementation: just compute loss
+        for (int epoch = 0; epoch < epochs; ++epoch) {
+            loss = calculateLoss(data, labels);
+        }
+        
+        return loss;
+    }
+    
+    /**
+     * @brief Evaluate the network on test data
+     * 
+     * @param data Test data
+     * @param labels Test labels
+     * @return Accuracy on the test data
+     */
+    float evaluate(
+        const std::vector<T>& data,
+        const std::vector<T>& labels) 
+    {
+        // Simple placeholder implementation for evaluation
+        // In a real implementation, this would calculate accuracy
+        
+        // Compute a dummy accuracy metric based on the loss
+        float loss = calculateLoss(data, labels);
+        return 1.0f - loss; // Simple conversion of loss to "accuracy"
+    }
+    
+    /**
+     * @brief Calculate loss on the given data and labels
+     * 
+     * @param data Input data
+     * @param labels Expected output labels
+     * @return Computed loss value
+     */
+    float calculateLoss(
+        const std::vector<T>& data,
+        const std::vector<T>& labels) 
+    {
+        // Simple placeholder implementation for computing loss
+        // In a real implementation, this would calculate an actual loss function
+        float total_loss = 0.0f;
+        
+        // We assume data is arranged as [sample1, sample2, ...] where each sample has getInputSize() elements
+        // and labels are arranged similarly with getOutputSize() elements per sample
+        
+        size_t num_samples = data.size() / getInputSize();
+        if (num_samples == 0 || labels.size() != num_samples * getOutputSize()) {
+            // Invalid data/label shapes
+            core::Logger::warning("calculateLoss: Input data/labels size mismatch!");
+            core::Logger::warning("data.size(): " + std::to_string(data.size()) + 
+                                  ", getInputSize(): " + std::to_string(getInputSize()) + 
+                                  ", num_samples: " + std::to_string(num_samples) + 
+                                  ", labels.size(): " + std::to_string(labels.size()) + 
+                                  ", expected: " + std::to_string(num_samples * getOutputSize()));
+            return 1.0f; // Return a high loss value to indicate error
+        }
+        
+        // Process each sample
+        for (size_t sample = 0; sample < num_samples; ++sample) {
+            // Extract this sample's data
+            std::vector<T> input(data.begin() + sample * getInputSize(), 
+                                data.begin() + (sample + 1) * getInputSize());
+            
+            // Do forward pass
+            std::vector<T> output = this->forward(input);
+            
+            // Extract this sample's label
+            std::vector<T> target(labels.begin() + sample * getOutputSize(),
+                                 labels.begin() + (sample + 1) * getOutputSize());
+            
+            // Calculate mean squared error
+            float sample_loss = 0.0f;
+            for (size_t i = 0; i < output.size(); ++i) {
+                float diff = output[i] - target[i];
+                sample_loss += diff * diff;
+            }
+            
+            total_loss += sample_loss / output.size();
+        }
+        
+        return total_loss / num_samples;
+    }
+    
+    /**
+     * @brief Save the current state of the network
+     * 
+     * @return A structure representing the network state
+     */
+    std::vector<std::vector<std::vector<T>>> saveState() const {
+        // Simple implementation to satisfy interface
+        // This would normally save all weights and biases
+        std::vector<std::vector<std::vector<T>>> state;
+        return state;
+    }
+
+    /**
+     * @brief Get a mutable reference to a specific layer
+     * 
+     * @param layer_idx Index of the layer
+     * @return Mutable reference to the layer
+     */
+    Layer& getLayerMutable(size_t layer_idx) {
+        if (layer_idx >= layers_.size()) {
+            throw std::out_of_range("Layer index out of range");
+        }
+        return layers_[layer_idx];
+    }
+
 private:
     // Define the weight protection type based on protection level
     using WeightType = std::conditional_t<
@@ -391,17 +638,20 @@ private:
         
         // Initialize weights for each layer
         weights_.resize(num_layers - 1);
+        biases_.resize(num_layers - 1);
+        layers_.resize(num_layers - 1);
+        
         for (size_t i = 0; i < num_layers - 1; ++i) {
             weights_[i].resize(layer_sizes_[i]);
             for (size_t j = 0; j < layer_sizes_[i]; ++j) {
                 weights_[i][j].resize(layer_sizes_[i + 1]);
             }
-        }
-        
-        // Initialize biases for each layer (except input layer)
-        biases_.resize(num_layers - 1);
-        for (size_t i = 0; i < num_layers - 1; ++i) {
+            
             biases_[i].resize(layer_sizes_[i + 1]);
+            
+            // Initialize the Layer structure
+            layers_[i].weights.resize(layer_sizes_[i], std::vector<T>(layer_sizes_[i + 1]));
+            layers_[i].biases.resize(layer_sizes_[i + 1]);
         }
         
         // Initialize activation functions (default to ReLU)
@@ -421,12 +671,14 @@ private:
                 for (size_t j = 0; j < layer_sizes_[layer + 1]; ++j) {
                     T value = dist(gen);
                     setWeight(layer, i, j, value);
+                    layers_[layer].weights[i][j] = value;
                 }
             }
             
             // Initialize biases
             for (size_t j = 0; j < layer_sizes_[layer + 1]; ++j) {
                 setBias(layer, j, T{0});
+                layers_[layer].biases[j] = T{0};
             }
         }
     }
@@ -511,6 +763,9 @@ private:
         } else {
             weights_[layer][input][output].setValue(value);
         }
+        
+        // Update the layer representation
+        layers_[layer].weights[input][output] = value;
     }
     
     /**
@@ -558,6 +813,9 @@ private:
         } else {
             biases_[layer][output].setValue(value);
         }
+        
+        // Update the layer representation
+        layers_[layer].biases[output] = value;
     }
     
     /**
@@ -761,6 +1019,9 @@ private:
     std::vector<std::vector<std::vector<WeightType>>> weights_;
     std::vector<std::vector<WeightType>> biases_;
     std::vector<std::function<T(T)>> activation_functions_;
+    
+    // Layers representation for external access
+    std::vector<Layer> layers_;
     
     // Error statistics
     mutable struct {

@@ -3,6 +3,7 @@
 #pragma once
 
 #include <rad_ml/neural/protected_neural_network.hpp>
+#include <rad_ml/neural/activation.hpp>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -29,6 +30,32 @@ public:
     ResidualNeuralNetwork(
         const std::vector<size_t>& layer_sizes,
         neural::ProtectionLevel protection_level = neural::ProtectionLevel::NONE);
+    
+    /**
+     * Constructor with input/output sizes
+     */
+    ResidualNeuralNetwork(
+        size_t input_size,
+        size_t output_size,
+        neural::ProtectionLevel protection_level = neural::ProtectionLevel::NONE);
+    
+    /**
+     * Copy constructor
+     */
+    ResidualNeuralNetwork(const ResidualNeuralNetwork& other);
+    
+    /**
+     * Copy assignment operator
+     */
+    ResidualNeuralNetwork& operator=(const ResidualNeuralNetwork& other);
+    
+    /**
+     * Add a residual block to the network
+     * @param size Size of the hidden layer in the block
+     * @param activation Activation function to use
+     * @param dropout Dropout probability (0-1)
+     */
+    void addResidualBlock(size_t size, neural::Activation activation, float dropout = 0.0f);
     
     /**
      * Adds a skip connection between two layers
@@ -64,6 +91,61 @@ public:
     std::vector<T> forward(
         const std::vector<T>& input,
         double radiation_level = 0.0);
+    
+    /**
+     * Train the network using the provided data
+     * @param data Training data
+     * @param labels Training labels
+     * @param epochs Number of training epochs
+     * @param batch_size Batch size for training
+     * @param learning_rate Learning rate for training
+     * @return Final training loss
+     */
+    float train(
+        const std::vector<T>& data,
+        const std::vector<T>& labels,
+        int epochs = 10,
+        int batch_size = 32,
+        float learning_rate = 0.01f);
+    
+    /**
+     * Evaluate the network on test data
+     * @param data Test data
+     * @param labels Test labels
+     * @return Accuracy on the test data
+     */
+    float evaluate(
+        const std::vector<T>& data,
+        const std::vector<T>& labels);
+    
+    /**
+     * Calculate loss on the given data and labels
+     * @param data Input data
+     * @param labels Expected output labels
+     * @return Computed loss value
+     */
+    float calculateLoss(
+        const std::vector<T>& data,
+        const std::vector<T>& labels);
+    
+    /**
+     * Save the current state of the network
+     * @return A structure representing the network state
+     */
+    std::vector<std::vector<std::vector<T>>> saveState() const;
+    
+    /**
+     * Get the layers of the network
+     * @return Reference to the network layers
+     */
+    const std::vector<typename neural::ProtectedNeuralNetwork<T>::Layer>& getLayers() const;
+    
+    /**
+     * Get the mutable layer of the network
+     * @param layer_idx Index of the layer
+     * @return Mutable reference to the layer
+     */
+    typename neural::ProtectedNeuralNetwork<T>::Layer& getLayerMutable(size_t layer_idx);
     
     /**
      * Save network to file including skip connections
@@ -143,6 +225,67 @@ ResidualNeuralNetwork<T>::ResidualNeuralNetwork(
     neural::ProtectionLevel protection_level)
     : neural::ProtectedNeuralNetwork<T>(layer_sizes, protection_level) {
     // Nothing else to initialize
+}
+
+template<typename T>
+ResidualNeuralNetwork<T>::ResidualNeuralNetwork(
+    size_t input_size,
+    size_t output_size,
+    neural::ProtectionLevel protection_level)
+    : neural::ProtectedNeuralNetwork<T>({input_size, output_size}, protection_level) {
+    // Initialize with just input and output layers
+}
+
+template<typename T>
+ResidualNeuralNetwork<T>::ResidualNeuralNetwork(const ResidualNeuralNetwork& other)
+    : neural::ProtectedNeuralNetwork<T>(other)
+{
+    // Copy skip connections
+    for (const auto& [key, conn] : other.skip_connections_) {
+        SkipConnection new_conn;
+        new_conn.projection = conn.projection;
+        new_conn.weights = conn.weights;
+        
+        // Create a new protection instance if the original had one
+        if (conn.protection) {
+            new_conn.protection = std::make_unique<neural::MultibitProtection<T>>(*conn.protection);
+        }
+        
+        skip_connections_[key] = std::move(new_conn);
+    }
+}
+
+template<typename T>
+ResidualNeuralNetwork<T>& ResidualNeuralNetwork<T>::operator=(const ResidualNeuralNetwork& other) {
+    if (this != &other) {
+        // Call base class assignment
+        neural::ProtectedNeuralNetwork<T>::operator=(other);
+        
+        // Clear existing connections
+        skip_connections_.clear();
+        
+        // Copy skip connections
+        for (const auto& [key, conn] : other.skip_connections_) {
+            SkipConnection new_conn;
+            new_conn.projection = conn.projection;
+            new_conn.weights = conn.weights;
+            
+            // Create a new protection instance if the original had one
+            if (conn.protection) {
+                new_conn.protection = std::make_unique<neural::MultibitProtection<T>>(*conn.protection);
+            }
+            
+            skip_connections_[key] = std::move(new_conn);
+        }
+    }
+    return *this;
+}
+
+template<typename T>
+void ResidualNeuralNetwork<T>::addResidualBlock(size_t size, neural::Activation activation, float dropout) {
+    // Implementation would add a new hidden layer with the specified size
+    // and create a skip connection around it
+    // This is a placeholder implementation
 }
 
 template<typename T>
@@ -282,6 +425,83 @@ std::vector<std::pair<size_t, size_t>> ResidualNeuralNetwork<T>::getSkipConnecti
     }
     
     return connections;
+}
+
+// Implementation of the missing methods
+
+template<typename T>
+float ResidualNeuralNetwork<T>::train(
+    const std::vector<T>& data,
+    const std::vector<T>& labels,
+    int epochs,
+    int batch_size,
+    float learning_rate) {
+    // Simple placeholder implementation
+    // In a real implementation, this would perform backpropagation
+    float loss = 0.0f;
+    
+    // For now, just forward pass and calculate loss
+    for (int e = 0; e < epochs; ++e) {
+        loss = calculateLoss(data, labels);
+    }
+    
+    return loss;
+}
+
+template<typename T>
+float ResidualNeuralNetwork<T>::evaluate(
+    const std::vector<T>& data,
+    const std::vector<T>& labels) {
+    // Simple placeholder implementation
+    // In a real implementation, this would calculate accuracy
+    float accuracy = 0.0f;
+    
+    // For now, just return a dummy value
+    accuracy = 1.0f - calculateLoss(data, labels);
+    return accuracy;
+}
+
+template<typename T>
+float ResidualNeuralNetwork<T>::calculateLoss(
+    const std::vector<T>& data,
+    const std::vector<T>& labels) {
+    // Simple placeholder implementation
+    // In a real implementation, this would calculate the loss function
+    float loss = 0.0f;
+    
+    // Dummy implementation
+    std::vector<T> output = forward(data);
+    
+    // Calculate mean squared error
+    for (size_t i = 0; i < output.size() && i < labels.size(); ++i) {
+        float diff = output[i] - labels[i];
+        loss += diff * diff;
+    }
+    
+    if (!output.empty()) {
+        loss /= output.size();
+    }
+    
+    return loss;
+}
+
+template<typename T>
+std::vector<std::vector<std::vector<T>>> ResidualNeuralNetwork<T>::saveState() const {
+    // Placeholder implementation
+    // This would save all network weights and biases
+    return std::vector<std::vector<std::vector<T>>>();
+}
+
+template<typename T>
+const std::vector<typename neural::ProtectedNeuralNetwork<T>::Layer>& ResidualNeuralNetwork<T>::getLayers() const {
+    // Return the parent class's layers
+    return this->neural::ProtectedNeuralNetwork<T>::getLayers();
+}
+
+template<typename T>
+typename neural::ProtectedNeuralNetwork<T>::Layer& ResidualNeuralNetwork<T>::getLayerMutable(size_t layer_idx) {
+    // Return the parent class's mutable layer
+    return this->neural::ProtectedNeuralNetwork<T>::getLayerMutable(layer_idx);
 }
 
 } // namespace research
