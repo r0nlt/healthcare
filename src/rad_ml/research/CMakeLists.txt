@@ -4,6 +4,7 @@
 set(RAD_ML_RESEARCH_SOURCES
     architecture_tester.cpp
     auto_arch_search.cpp
+    radiation_aware_training.cpp
     # Other source files will be added as they are implemented
 )
 
