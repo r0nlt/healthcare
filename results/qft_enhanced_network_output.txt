@@ -1,0 +1,161 @@
+QFT-Enhanced Neural Network Example
+===================================
+
+Demonstrating QFT-Enhanced Neural Network
+Environment: Low Earth Orbit (Polar)
+Dose rate: 0.01 Gy/s
+Training QFT-enhanced network with radiation dose: 1 Gy
+Final loss: 0.0999667
+
+Testing with different radiation levels:
+Radiation level: 0 Gy/s, Accuracy: 0%
+Radiation level: 0.1 Gy/s, Accuracy: 0%
+Radiation level: 0.5 Gy/s, Accuracy: 0%
+Radiation level: 1 Gy/s, Accuracy: 0%
+Radiation level: 2 Gy/s, Accuracy: 0.5%
+Radiation level: 5 Gy/s, Accuracy: 2.4%
+
+Performing cross-domain knowledge distillation...
+Distillation loss: 1.35715
+Post-distillation accuracy at 1.0 Gy/s: 0%
+QFT-Enhanced Neural Network demonstration complete.
+
+
+Testing with solar flare:
+===========================
+
+Solar flare intensity: 201x baseline
+Demonstrating QFT-Enhanced Neural Network
+Environment: Low Earth Orbit (Polar)
+Dose rate: 2.01 Gy/s
+Training QFT-enhanced network with radiation dose: 201 Gy
+Final loss: 0.09999
+
+Testing with different radiation levels:
+Radiation level: 0 Gy/s, Accuracy: 0%
+Radiation level: 0.1 Gy/s, Accuracy: 0%
+Radiation level: 0.5 Gy/s, Accuracy: 0%
+Radiation level: 1 Gy/s, Accuracy: 0%
+Radiation level: 2 Gy/s, Accuracy: 0.2%
+Radiation level: 5 Gy/s, Accuracy: 2.1%
+
+Performing cross-domain knowledge distillation...
+Distillation loss: 1.34287
+Post-distillation accuracy at 1.0 Gy/s: 0%
+QFT-Enhanced Neural Network demonstration complete.
+
+
+Comparing different shielding levels:
+====================================
+
+
+Testing with 1mm aluminum shielding:
+Radiation flux at SAA:
+  - Total flux: 1.15767e+07 particles/cm²/s
+  - Total dose rate: 115213 rad/hour
+Demonstrating QFT-Enhanced Neural Network
+Environment: Low Earth Orbit (Polar)
+Dose rate: 32.0036 Gy/s
+Training QFT-enhanced network with radiation dose: 1600.18 Gy
+Final loss: 0.09999
+
+Testing with different radiation levels:
+Radiation level: 0 Gy/s, Accuracy: 0%
+Radiation level: 0.1 Gy/s, Accuracy: 0%
+Radiation level: 0.5 Gy/s, Accuracy: 0%
+Radiation level: 1 Gy/s, Accuracy: 0%
+Radiation level: 2 Gy/s, Accuracy: 0.2%
+Radiation level: 5 Gy/s, Accuracy: 1.4%
+
+Performing cross-domain knowledge distillation...
+Distillation loss: 1.39055
+Post-distillation accuracy at 1.0 Gy/s: 0%
+QFT-Enhanced Neural Network demonstration complete.
+
+Testing with 5mm aluminum shielding:
+Radiation flux at SAA:
+  - Total flux: 9.46892e+06 particles/cm²/s
+  - Total dose rate: 94320.7 rad/hour
+Demonstrating QFT-Enhanced Neural Network
+Environment: Low Earth Orbit (Polar)
+Dose rate: 26.2002 Gy/s
+Training QFT-enhanced network with radiation dose: 1310.01 Gy
+Final loss: 0.09999
+
+Testing with different radiation levels:
+Radiation level: 0 Gy/s, Accuracy: 0%
+Radiation level: 0.1 Gy/s, Accuracy: 0%
+Radiation level: 0.5 Gy/s, Accuracy: 0%
+Radiation level: 1 Gy/s, Accuracy: 0%
+Radiation level: 2 Gy/s, Accuracy: 0.2%
+Radiation level: 5 Gy/s, Accuracy: 2.2%
+
+Performing cross-domain knowledge distillation...
+Distillation loss: 1.02467
+Post-distillation accuracy at 1.0 Gy/s: 0%
+QFT-Enhanced Neural Network demonstration complete.
+
+Testing with 10mm aluminum shielding:
+Radiation flux at SAA:
+  - Total flux: 7.3672e+06 particles/cm²/s
+  - Total dose rate: 73451.4 rad/hour
+Demonstrating QFT-Enhanced Neural Network
+Environment: Low Earth Orbit (Polar)
+Dose rate: 20.4032 Gy/s
+Training QFT-enhanced network with radiation dose: 1020.16 Gy
+Final loss: 0.09999
+
+Testing with different radiation levels:
+Radiation level: 0 Gy/s, Accuracy: 2%
+Radiation level: 0.1 Gy/s, Accuracy: 2%
+Radiation level: 0.5 Gy/s, Accuracy: 2%
+Radiation level: 1 Gy/s, Accuracy: 2%
+Radiation level: 2 Gy/s, Accuracy: 2%
+Radiation level: 5 Gy/s, Accuracy: 2.4%
+
+Performing cross-domain knowledge distillation...
+Distillation loss: 0.739664
+Post-distillation accuracy at 1.0 Gy/s: 2%
+QFT-Enhanced Neural Network demonstration complete.
+
+Testing with 20mm aluminum shielding:
+Radiation flux at SAA:
+  - Total flux: 4.46239e+06 particles/cm²/s
+  - Total dose rate: 44547.2 rad/hour
+Demonstrating QFT-Enhanced Neural Network
+Environment: Low Earth Orbit (Polar)
+Dose rate: 12.3742 Gy/s
+Training QFT-enhanced network with radiation dose: 618.711 Gy
+Final loss: 0.09999
+
+Testing with different radiation levels:
+Radiation level: 0 Gy/s, Accuracy: 2%
+Radiation level: 0.1 Gy/s, Accuracy: 2%
+Radiation level: 0.5 Gy/s, Accuracy: 2%
+Radiation level: 1 Gy/s, Accuracy: 2%
+Radiation level: 2 Gy/s, Accuracy: 2.4%
+Radiation level: 5 Gy/s, Accuracy: 2.4%
+
+Performing cross-domain knowledge distillation...
+Distillation loss: 1.44403
+Post-distillation accuracy at 1.0 Gy/s: 2%
+QFT-Enhanced Neural Network demonstration complete.
+
+
+Demonstrating Cross-Domain Knowledge Transfer:
+===========================================
+
+Training semiconductor model in low-radiation environment...
+Training space model with radiation awareness...
+
+Comparison of models under radiation:
+------------------------------------
+Rad Level | Standard  | QFT-Enhanced | Improvement
+--------------------------------------------
+    0.00 |     4.00% |         4.00% |      +0.00%
+    0.50 |     5.00% |         3.20% |     -36.00%
+    1.00 |     5.00% |         3.80% |     -24.00%
+    2.00 |     4.00% |         5.00% |     +25.00%
+    5.00 |     4.00% |         7.20% |     +80.00%
+
+QFT-Enhanced Neural Network Example Complete

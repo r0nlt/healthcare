@@ -1,0 +1,85 @@
+==== QFT Bridge Test Program ====
+============================================================
+
+=== Testing Parameter Conversion ===
+Silicon parameters:
+  - Energy gap:     1.12 eV
+  - Barrier height: 3.1 eV
+  - Feature size:   15 nm
+Converted biological parameters:
+  - Bond energy:     0.336 eV (expected: 0.3-0.5)
+  - Barrier height:  0.31 eV (expected: 0.2-0.5)
+  - Feature size:    8 nm (expected: 7-9)
+  - α/β ratio:       10 (expected: tissue-specific value)
+  - α coefficient:   0.3 Gy⁻¹
+  - β coefficient:   0.03 Gy⁻²
+Parameter conversion PASSED
+
+=== Testing Quantum Enhancement Factors ===
+Silicon quantum enhancement: 1.1200 (expected range: 1.08-1.12)
+Biological quantum enhancement: 1.0500 (expected range: 1.03-1.05)
+Silicon tunneling probability: 6.307851e-04
+Biological tunneling probability: 1.640332e-04
+Quantum enhancement PASSED
+
+=== Testing Radiation Damage Prediction ===
+Radiation dose: 5.000000e-01 Gy
+Applied biological quantum corrections with factors: 
+  - Bio tunneling probability: 6.059078e-08
+  - Bio wave equation correction: 3.000000e-02
+  - Bio zero-point energy contribution: 5.000000e-02
+  - Tissue radiosensitivity: 1.440000e+00
+  - Cellular repair rate: 3.000000e-01
+Cross-Domain Validation:
+  - Semiconductor error rate: 1.238623e+00
+  - Biological equivalent:    2.766627e-01
+  - Ratio:                    2.233631e-01
+  - Valid ratio range:        1.000000e-01 to 1.000000e+01
+  - Within tolerance:         YES
+Cross-domain validation PASSED at 5.000000e-01 Gy
+
+Radiation dose: 1.000000e+00 Gy
+Applied biological quantum corrections with factors: 
+  - Bio tunneling probability: 6.059078e-08
+  - Bio wave equation correction: 3.000000e-02
+  - Bio zero-point energy contribution: 5.000000e-02
+  - Tissue radiosensitivity: 1.440000e+00
+  - Cellular repair rate: 3.000000e-01
+Cross-Domain Validation:
+  - Semiconductor error rate: 1.388118e+00
+  - Biological equivalent:    2.766627e-01
+  - Ratio:                    1.993078e-01
+  - Valid ratio range:        1.000000e-01 to 1.000000e+01
+  - Within tolerance:         YES
+Cross-domain validation PASSED at 1.000000e+00 Gy
+
+Radiation dose: 2.000000e+00 Gy
+Applied biological quantum corrections with factors: 
+  - Bio tunneling probability: 6.059078e-08
+  - Bio wave equation correction: 3.000000e-02
+  - Bio zero-point energy contribution: 5.000000e-02
+  - Tissue radiosensitivity: 1.440000e+00
+  - Cellular repair rate: 3.000000e-01
+Cross-Domain Validation:
+  - Semiconductor error rate: 1.537613e+00
+  - Biological equivalent:    2.263214e-01
+  - Ratio:                    1.471901e-01
+  - Valid ratio range:        1.000000e-01 to 1.000000e+01
+  - Within tolerance:         YES
+Cross-domain validation PASSED at 2.000000e+00 Gy
+
+Radiation dose: 5.000000e+00 Gy
+Applied biological quantum corrections with factors: 
+  - Bio tunneling probability: 6.059078e-08
+  - Bio wave equation correction: 3.000000e-02
+  - Bio zero-point energy contribution: 5.000000e-02
+  - Tissue radiosensitivity: 1.440000e+00
+  - Cellular repair rate: 3.000000e-01
+Cross-Domain Validation:
+  - Semiconductor error rate: 1.735234e+00
+  - Biological equivalent:    2.654301e-01
+  - Ratio:                    1.529650e-01
+  - Valid ratio range:        5.000000e-02 to 2.000000e+01
+  - Within tolerance:         YES
+Cross-domain validation PASSED at 5.000000e+00 Gy
+

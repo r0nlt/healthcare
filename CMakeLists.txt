@@ -10,14 +10,76 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Create healthcare test executable
-add_executable(healthcare_test
-    test/healthcare_test.cpp
+# Find required packages
+find_package(Eigen3 QUIET)
+if(NOT EIGEN3_FOUND)
+    # If not found, use a fallback approach or display a message
+    message(STATUS "Eigen3 not found - using bundled version or system headers")
+endif()
+
+# Source files
+set(PHYSICS_SOURCES
+    src/physics/quantum_integration.cpp
+    # Comment out this file to avoid duplicate symbol errors
+    # src/rad_ml/physics/quantum_models.cpp
+)
+
+# Add a separate variable for quantum_models when needed
+set(QUANTUM_MODELS_SOURCES
+    src/rad_ml/physics/quantum_models.cpp
+)
+
+set(HEALTHCARE_SOURCES
     src/healthcare/bio_quantum_integration.cpp
 )
 
-# Set output directory
-set_target_properties(healthcare_test
+set(NEURAL_SOURCES
+    # The example now includes all the necessary implementation
+    # src/rad_ml/neural/qft_enhanced_network_example.cpp
+)
+
+# Create healthcare test executable
+add_executable(healthcare_test
+    test/healthcare_test.cpp
+    ${HEALTHCARE_SOURCES}
+)
+
+# Create QFT bridge test executable
+add_executable(qft_bridge_test
+    test/qft_bridge_test.cpp
+    src/rad_ml/crossdomain/qft_bridge.cpp
+    ${PHYSICS_SOURCES}
+    ${QUANTUM_MODELS_SOURCES}
+    ${HEALTHCARE_SOURCES}
+)
+
+# Create simplified cross-domain bridge example
+add_executable(crossdomain_simplified
+    examples/crossdomain_simplified.cpp
+)
+
+# Create QFT bridge analysis program
+add_executable(qft_bridge_analysis
+    examples/qft_bridge_analysis.cpp
+)
+
+# Create QFT-enhanced neural network example
+add_executable(qft_enhanced_network_example
+    examples/qft_enhanced_network_example.cpp
+    ${NEURAL_SOURCES}
+    ${PHYSICS_SOURCES}
+    ${QUANTUM_MODELS_SOURCES}
+    ${HEALTHCARE_SOURCES}
+    src/rad_ml/crossdomain/qft_bridge.cpp
+)
+
+# Set output directory for executables
+set_target_properties(
+    healthcare_test
+    qft_bridge_test
+    crossdomain_simplified
+    qft_bridge_analysis
+    qft_enhanced_network_example
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )

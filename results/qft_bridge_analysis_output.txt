@@ -1,0 +1,69 @@
+==== QFT Bridge Analysis Program ====
+============================================================
+
+=== Testing Parameter Conversion ===
+Silicon parameters:
+  - Energy gap:     1.12 eV
+  - Barrier height: 3.1 eV
+  - Feature size:   15 nm
+Converted biological parameters:
+  - Bond energy:     0.336 eV (expected: 0.3-0.5)
+  - Barrier height:  0.31 eV (expected: 0.2-0.5)
+  - Feature size:    8 nm (expected: 7-9)
+  - α/β ratio:       10 (expected: tissue-specific value)
+  - α coefficient:   0.3 Gy⁻¹
+  - β coefficient:   0.03 Gy⁻²
+Parameter conversion PASSED
+
+=== Testing Quantum Enhancement Factors ===
+Silicon quantum enhancement: 1.1200 (expected range: 1.08-1.12)
+Biological quantum enhancement: 1.0517 (expected range: 1.03-1.05)
+Silicon tunneling probability: 6.307851e-04
+Biological tunneling probability: 1.051495e-04
+Biological tunneling with water enhancement: 1.640332e-04
+ERROR: Biological enhancement outside expected range (1.03-1.05)
+Quantum enhancement FAILED
+
+=== Testing Radiation Damage Prediction ===
+Radiation dose: 5.000000e-01 Gy
+  - dna_strand_break: 7.501836e-02
+  - membrane_lipid_peroxidation: 4.501101e-02
+  - mitochondrial_damage: 3.000734e-02
+  - Total damage: 1.500367e-01 (Expected: 1.575000e-01)
+  - Semiconductor equivalent: 1.363970e-03
+  - Biological from semiconductor (with 110x factor): 1.500367e-01
+
+Radiation dose: 1.000000e+00 Gy
+  - dna_strand_break: 1.571813e-01
+  - membrane_lipid_peroxidation: 9.430879e-02
+  - mitochondrial_damage: 6.287253e-02
+  - Total damage: 3.143626e-01 (Expected: 3.300000e-01)
+  - Semiconductor equivalent: 2.857842e-03
+  - Biological from semiconductor (with 110x factor): 3.143626e-01
+
+Radiation dose: 2.000000e+00 Gy
+  - dna_strand_break: 3.429411e-01
+  - membrane_lipid_peroxidation: 2.057646e-01
+  - mitochondrial_damage: 1.371764e-01
+  - Total damage: 6.858821e-01 (Expected: 7.200000e-01)
+  - Semiconductor equivalent: 6.235292e-03
+  - Biological from semiconductor (with 110x factor): 6.858821e-01
+
+Radiation dose: 5.000000e+00 Gy
+  - dna_strand_break: 1.071691e+00
+  - membrane_lipid_peroxidation: 6.430145e-01
+  - mitochondrial_damage: 4.286763e-01
+  - Total damage: 2.143382e+00 (Expected: 2.250000e+00)
+  - Semiconductor equivalent: 1.948529e-02
+  - Biological from semiconductor (with 110x factor): 2.143382e+00
+
+=== Testing Temperature Dependence ===
+Temperature  |  Silicon Enhancement  |  Bio Enhancement  |  Ratio
+----------------------------------------------------------------
+7.700000e+01 K  |          1.1200  |          1.0745  |  0.9594
+150.0000 K  |          1.1200  |          1.0745  |  0.9594
+300.0000 K  |          1.1200  |          1.0745  |  0.9594
+400.0000 K  |          1.1200  |          1.0745  |  0.9594
+
+Analysis completed successfully.
+The quantum field theory bridge parameters have been validated.
