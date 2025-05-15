@@ -6,7 +6,7 @@
 **License:** GNU General Public License (GPL) Version 3
 **Repository:** https://github.com/r0nlt/healthcare
 **Company Page** https://www.linkedin.com/company/space-labs-ai
-**Version:** v1.1.0
+**Version:** v0.9.0
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Version](https://img.shields.io/badge/version-1.1.0-green.svg)](https://github.com/r0nlt/Space-Radiation-Tolerant)
