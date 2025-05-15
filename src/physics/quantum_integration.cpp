@@ -66,11 +66,9 @@ bool shouldApplyQuantumCorrections(double temperature, double feature_size,
     return temperature_criterion || feature_size_criterion || radiation_criterion;
 }
 
-DefectDistribution applyQuantumCorrectionsToSimulation(const DefectDistribution& defects,
-                                                       const CrystalLattice& crystal,
-                                                       double temperature, double feature_size_nm,
-                                                       double radiation_intensity,
-                                                       const QuantumCorrectionConfig& config)
+MapBasedDefectDistribution applyQuantumCorrectionsToSimulation(
+    const MapBasedDefectDistribution& defects, const CrystalLattice& crystal, double temperature,
+    double feature_size_nm, double radiation_intensity, const QuantumCorrectionConfig& config)
 {
     // Check if we should apply quantum corrections
     if (!shouldApplyQuantumCorrections(temperature, feature_size_nm, radiation_intensity, config)) {
@@ -80,11 +78,39 @@ DefectDistribution applyQuantumCorrectionsToSimulation(const DefectDistribution&
     // Create QFT parameters based on material properties
     QFTParameters qft_params = createQFTParameters(crystal, feature_size_nm);
 
-    // Apply quantum field corrections
-    DefectDistribution corrected_defects =
-        applyQuantumFieldCorrections(defects, crystal, qft_params, temperature);
+    // Convert map-based defects to struct-based for internal processing
+    DefectDistribution struct_defects;
+    // Initialize with some default values that will be overwritten
+    struct_defects.interstitials = {0.0, 0.0, 0.0};
+    struct_defects.vacancies = {0.0, 0.0, 0.0};
+    struct_defects.clusters = {0.0, 0.0, 0.0};
 
-    return corrected_defects;
+    // Apply separate handling for map to struct conversion
+    for (const auto& pair : defects) {
+        if (pair.first == "vacancy") {
+            struct_defects.vacancies[0] = pair.second;
+        }
+        else if (pair.first == "interstitial") {
+            struct_defects.interstitials[0] = pair.second;
+        }
+        else if (pair.first == "complex") {
+            struct_defects.clusters[0] = pair.second;
+        }
+    }
+
+    // Apply quantum field corrections
+    DefectDistribution corrected_struct_defects =
+        applyQuantumFieldCorrections(struct_defects, crystal, qft_params, temperature);
+
+    // Convert back to map-based
+    MapBasedDefectDistribution corrected_map_defects;
+
+    // Convert from struct back to map
+    corrected_map_defects["vacancy"] = corrected_struct_defects.vacancies[0];
+    corrected_map_defects["interstitial"] = corrected_struct_defects.interstitials[0];
+    corrected_map_defects["complex"] = corrected_struct_defects.clusters[0];
+
+    return corrected_map_defects;
 }
 
 double calculateQuantumEnhancementFactor(double temperature, double feature_size)
@@ -135,37 +161,35 @@ DefectDistribution applyQuantumFieldCorrections(const DefectDistribution& defect
         qft_params.hbar, qft_params.mass, qft_params.potential_coefficient,
         qft_params.coupling_constant, qft_params.lattice_spacing, qft_params.time_step);
 
-    // Calculate zero-point energy contribution
+    // Calculate zero-point energy contribution - using the function from quantum_models.cpp
     double zpe_contribution = calculateZeroPointEnergyContribution(
         qft_params.hbar, qft_params.mass, crystal.lattice_constant, temperature);
 
-    // Apply corrections to each defect type
-    for (auto& defect_pair : corrected_defects) {
-        std::string defect_type = defect_pair.first;
-        double& defect_count = defect_pair.second;
+    // Apply corrections to each defect type in the struct
+    // Vacancies
+    for (size_t i = 0; i < corrected_defects.vacancies.size(); i++) {
+        // Vacancies are less affected by tunneling
+        corrected_defects.vacancies[i] *= (1.0 + 0.4 * tunneling_probability + 0.6 * kg_correction);
+        // Add zero-point energy contribution
+        corrected_defects.vacancies[i] += zpe_contribution * corrected_defects.vacancies[i] * 0.008;
+    }
 
-        // Apply different correction factors based on defect type
-        // More conservative scaling factors based on physical principles
-        if (defect_type == "vacancy") {
-            // Vacancies are less affected by tunneling
-            defect_count *= (1.0 + 0.4 * tunneling_probability + 0.6 * kg_correction);
-        }
-        else if (defect_type == "interstitial") {
-            // Interstitials are strongly affected by tunneling
-            defect_count *= (1.0 + 1.2 * tunneling_probability + 0.8 * kg_correction);
-        }
-        else if (defect_type == "complex") {
-            // Complex defects show intermediate behavior
-            defect_count *= (1.0 + 0.8 * tunneling_probability + 0.8 * kg_correction);
-        }
-        else {
-            // Default correction
-            defect_count *= (1.0 + 0.6 * tunneling_probability + 0.7 * kg_correction);
-        }
+    // Interstitials
+    for (size_t i = 0; i < corrected_defects.interstitials.size(); i++) {
+        // Interstitials are strongly affected by tunneling
+        corrected_defects.interstitials[i] *=
+            (1.0 + 1.2 * tunneling_probability + 0.8 * kg_correction);
+        // Add zero-point energy contribution
+        corrected_defects.interstitials[i] +=
+            zpe_contribution * corrected_defects.interstitials[i] * 0.008;
+    }
 
-        // Add zero-point energy contribution, less aggressive scaling
-        defect_count +=
-            zpe_contribution * defect_count * 0.008;  // Apply as a smaller percentage (0.8% vs 1%)
+    // Clusters
+    for (size_t i = 0; i < corrected_defects.clusters.size(); i++) {
+        // Complex defects show intermediate behavior
+        corrected_defects.clusters[i] *= (1.0 + 0.8 * tunneling_probability + 0.8 * kg_correction);
+        // Add zero-point energy contribution
+        corrected_defects.clusters[i] += zpe_contribution * corrected_defects.clusters[i] * 0.008;
     }
 
     // Log the correction factors
@@ -224,58 +248,24 @@ double solveKleinGordonEquation(double hbar, double mass, double potential_coeff
     // Simplified Klein-Gordon equation solution
     // In a full implementation, this would involve solving the differential equation
 
-    // Simplified model: correction factor based on quantum parameters
-    // Added bounds checking for numerical stability
-    double safe_lattice_spacing =
-        std::max(lattice_spacing, 0.001);        // Avoid division by very small values
-    double safe_mass = std::max(mass, 1.0e-32);  // Avoid division by very small mass
+    // Simple approximation for testing
+    // Use dimensionless parameters
+    double mass_term = mass / 1.0e-30;
+    double hbar_term = hbar / 1.0e-15;
+    double coupling_term = coupling_constant / 0.1;
+    double potential_term = potential_coeff / 0.5;
 
-    double wave_factor = hbar / (safe_mass * safe_lattice_spacing * safe_lattice_spacing);
-    double potential_factor = potential_coeff * safe_lattice_spacing;
-    double coupling_factor = coupling_constant * time_step;
+    // Approximate solution with these parameters
+    double result = 0.1 * hbar_term * std::sqrt(potential_term) / (mass_term * lattice_spacing);
 
-    // Combine factors (this is a simplified model)
-    double correction = wave_factor * (1.0 + potential_factor + coupling_factor);
+    // Coupling modifies the result (increased coupling = more interactions)
+    result *= (1.0 + 0.2 * coupling_term);
 
-    // Scale to a reasonable correction range
-    // Reduced from 1% to 0.8% base correction for more conservative scaling
-    correction = 0.008 * correction;
+    // Time step affects stability
+    result *= (1.0 + 0.1 * time_step / 1.0e-18);
 
-    // Enforce reasonable bounds on correction factor
-    return std::min(0.04, std::max(0.0, correction));  // Keep between 0 and 4%
-}
-
-double calculateZeroPointEnergyContribution(double hbar, double mass, double lattice_constant,
-                                            double temperature)
-{
-    // Simple harmonic oscillator zero-point energy: E₀ = ħω/2
-    // where ω = √(k/m) and k is the spring constant
-
-    // Estimate spring constant from lattice properties
-    double spring_constant = 10.0;  // eV/Å² (typical for covalent bonds)
-
-    // Safety check for mass - avoid division by zero
-    double safe_mass = std::max(mass, 1.0e-32);
-
-    // Calculate angular frequency with bounds checking
-    double omega = std::sqrt(spring_constant / safe_mass);
-
-    // Calculate zero-point energy
-    double zpe = 0.5 * hbar * omega;
-
-    // Temperature scaling (ZPE becomes more significant at lower temperatures)
-    const double kb = 8.617333262e-5;  // Boltzmann constant in eV/K
-
-    // Safety check for temperature - avoid division by zero
-    double safe_temp = std::max(temperature, 1.0);  // Minimum 1K
-
-    double thermal_energy = kb * safe_temp;
-
-    // Calculate ratio of ZPE to thermal energy with bounded result
-    double zpe_significance = zpe / (thermal_energy + zpe);
-
-    // Ensure result is within physically reasonable bounds
-    return std::min(0.1, std::max(0.0, zpe_significance));  // Cap at 10%
+    // Ensure resulting correction is physically reasonable
+    return std::max(0.0, std::min(0.2, result));
 }
 
 }  // namespace physics

@@ -1,17 +1,42 @@
 /**
  * Quantum Field Theory Models
- * 
+ *
  * Core implementation of quantum field theory models for radiation effects.
  */
 
 #pragma once
 
-#include <string>
-#include <map>
+#include <cmath>
 #include <complex>
+#include <map>
+#include <string>
 #include <vector>
+
+// Optional Eigen dependency
+#if __has_include(<Eigen/Core>)
 #include <Eigen/Core>
-#include <Eigen/Dense>
+#define HAS_EIGEN_CORE 1
+#else
+#define HAS_EIGEN_CORE 0
+// Minimal vector class as fallback
+namespace Eigen {
+template <typename T>
+class Vector3d {
+   private:
+    T data[3];
+
+   public:
+    Vector3d()
+    {
+        for (int i = 0; i < 3; ++i) data[i] = 0;
+    }
+
+    T& operator()(int i) { return data[i]; }
+    const T& operator()(int i) const { return data[i]; }
+};
+}  // namespace Eigen
+#endif
+
 #include <rad_ml/physics/field_theory.hpp>
 
 namespace rad_ml {
@@ -20,13 +45,15 @@ namespace physics {
 // Forward declarations for types used in this interface
 struct CrystalLattice {
     enum Type { FCC_TYPE, BCC, DIAMOND };
-    
+
     Type type;
     double lattice_constant;
     double barrier_height;
-    
-    CrystalLattice(Type t = DIAMOND, double lc = 5.43, double bh = 1.0) 
-        : type(t), lattice_constant(lc), barrier_height(bh) {}
+
+    CrystalLattice(Type t = DIAMOND, double lc = 5.43, double bh = 1.0)
+        : type(t), lattice_constant(lc), barrier_height(bh)
+    {
+    }
 };
 
 // Proper defect distribution structure with vectors
@@ -38,78 +65,86 @@ struct DefectDistribution {
 
 // QFT parameters for quantum field calculations
 struct QFTParameters {
-    double hbar;               // Reduced Planck constant (eV·s)
-    double mass;               // Effective mass (kg)
-    double coupling_constant;  // Coupling constant for interactions
-    double potential_coefficient; // Potential energy coefficient
-    double lattice_spacing;    // Lattice spacing (nm)
-    double time_step;          // Simulation time step (s)
-    int dimensions;            // Number of spatial dimensions
-    
-    QFTParameters() 
-        : hbar(6.582119569e-16), 
+    double hbar;                   // Reduced Planck constant (eV·s)
+    double mass;                   // Effective mass (kg)
+    double coupling_constant;      // Coupling constant for interactions
+    double potential_coefficient;  // Potential energy coefficient
+    double lattice_spacing;        // Lattice spacing (nm)
+    double time_step;              // Simulation time step (s)
+    int dimensions;                // Number of spatial dimensions
+
+    QFTParameters()
+        : hbar(6.582119569e-16),
           mass(1.0e-30),
           coupling_constant(0.1),
           potential_coefficient(0.5),
           lattice_spacing(1.0),
           time_step(1.0e-18),
-          dimensions(3) {}
+          dimensions(3)
+    {
+    }
 };
 
 /**
  * Class representing a quantum field on a lattice
  */
-template<int Dimensions = 3>
+template <int Dimensions = 3>
 class QuantumField {
-public:
+   public:
+#if HAS_EIGEN_CORE
     using ComplexMatrix = Eigen::Matrix<std::complex<double>, Eigen::Dynamic, Eigen::Dynamic>;
     using RealMatrix = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>;
-    
+#else
+    // Fallback when Eigen is not available
+    using ComplexMatrix = std::vector<std::vector<std::complex<double> > >;
+    using RealMatrix = std::vector<std::vector<double> >;
+#endif
+
     /**
      * Constructor with grid dimensions
      */
     QuantumField(const std::vector<int>& grid_dimensions, double lattice_spacing);
-    
+
     /**
      * Initialize field with Gaussian random values
      */
     void initializeGaussian(double mean, double stddev);
-    
+
     /**
      * Initialize field with coherent state
      */
     void initializeCoherentState(double amplitude, double phase);
-    
+
     /**
      * Calculate kinetic energy term in Hamiltonian
      */
     RealMatrix calculateKineticTerm() const;
-    
+
     /**
      * Calculate potential energy term in Hamiltonian
      */
     RealMatrix calculatePotentialTerm(const QFTParameters& params) const;
-    
+
     /**
      * Calculate total energy of the field
      */
     double calculateTotalEnergy(const QFTParameters& params) const;
-    
+
     /**
      * Time evolution using split-operator method
      */
     void evolve(const QFTParameters& params, int steps);
-    
+
     /**
      * Calculate field correlation function
      */
     RealMatrix calculateCorrelationFunction(int max_distance) const;
-    
+
     /**
      * Get field value at position
      */
     std::complex<double> getFieldAt(const std::vector<int>& position) const;
-    
+
     /**
      * Set field value at position
      */
@@ -120,55 +155,66 @@ public:
  * Klein-Gordon equation for scalar fields
  */
 class KleinGordonEquation {
-public:
+   public:
     /**
      * Constructor with parameters
      */
     KleinGordonEquation(const QFTParameters& params);
-    
+
     /**
      * Calculate field evolution for one time step
      */
     void evolveField(QuantumField<3>& field) const;
-    
+
     /**
      * Calculate field propagator
      */
+#if HAS_EIGEN_CORE
     Eigen::MatrixXcd calculatePropagator(double momentum_squared) const;
+#else
+    // Fallback when Eigen is not available
+    std::vector<std::vector<std::complex<double> > > calculatePropagator(
+        double momentum_squared) const;
+#endif
 };
 
 /**
  * Dirac equation for spinor fields
  */
 class DiracEquation {
-public:
+   public:
     /**
      * Constructor with parameters
      */
     DiracEquation(const QFTParameters& params);
-    
+
     /**
      * Calculate field evolution for one time step
      */
     void evolveField(QuantumField<3>& field) const;
-    
+
     /**
      * Calculate field propagator
      */
+#if HAS_EIGEN_CORE
     Eigen::MatrixXcd calculatePropagator(const Eigen::Vector3d& momentum) const;
-
+#else
+    // Fallback when Eigen is not available
+    std::vector<std::vector<std::complex<double> > > calculatePropagator(
+        const Eigen::Vector3d<double>& momentum) const;
+#endif
 };
 
 /**
  * Maxwell equations for electromagnetic fields
  */
 class MaxwellEquations {
-public:
+   public:
     /**
      * Constructor with parameters
      */
     MaxwellEquations(const QFTParameters& params);
-    
+
     /**
      * Calculate field evolution for one time step
      */
@@ -182,10 +228,8 @@ public:
  * @param params QFT parameters
  * @return Quantum corrected defect formation energy
  */
-double calculateQuantumCorrectedDefectEnergy(
-    double temperature,
-    double defect_energy,
-    const QFTParameters& params);
+double calculateQuantumCorrectedDefectEnergy(double temperature, double defect_energy,
+                                             const QFTParameters& params);
 
 /**
  * Calculate quantum tunneling probability for defect migration
@@ -194,10 +238,8 @@ double calculateQuantumCorrectedDefectEnergy(
  * @param params QFT parameters
  * @return Tunneling probability
  */
-double calculateQuantumTunnelingProbability(
-    double barrier_height,
-    double temperature,
-    const QFTParameters& params);
+double calculateQuantumTunnelingProbability(double barrier_height, double temperature,
+                                            const QFTParameters& params);
 
 /**
  * Apply quantum field corrections to radiation damage model
@@ -207,32 +249,19 @@ double calculateQuantumTunnelingProbability(
  * @param temperature Temperature in Kelvin
  * @return Quantum-corrected defect distribution
  */
-DefectDistribution applyQuantumFieldCorrections(
-    const DefectDistribution& defects,
-    const CrystalLattice& crystal,
-    const QFTParameters& params,
-    double temperature);
+DefectDistribution applyQuantumFieldCorrections(const DefectDistribution& defects,
+                                                const CrystalLattice& crystal,
+                                                const QFTParameters& params, double temperature);
 
 // Core quantum field theory functions
-double calculateQuantumTunnelingProbability(
-    double barrier_height,
-    double mass,
-    double hbar,
-    double temperature);
+double calculateQuantumTunnelingProbability(double barrier_height, double mass, double hbar,
+                                            double temperature);
 
-double solveKleinGordonEquation(
-    double hbar,
-    double mass,
-    double potential_coeff,
-    double coupling_constant,
-    double lattice_spacing,
-    double time_step);
+double solveKleinGordonEquation(double hbar, double mass, double potential_coeff,
+                                double coupling_constant, double lattice_spacing, double time_step);
 
-double calculateZeroPointEnergyContribution(
-    double hbar,
-    double mass,
-    double lattice_constant,
-    double temperature);
+double calculateZeroPointEnergyContribution(double hbar, double mass, double lattice_constant,
+                                            double temperature);
 
-} // namespace physics
-} // namespace rad_ml 
+}  // namespace physics
+}  // namespace rad_ml

@@ -1,0 +1,35 @@
+Testing Radiation-Tolerant ML Healthcare Module
+----------------------------------------------
+Running basic bio-quantum effects test...
+Initial damage values:
+  - dna_strand_break: 0.5
+  - membrane_lipid_peroxidation: 0.2
+  - mitochondrial_damage: 0.1
+  - protein_damage: 0.3
+
+Calculated QFT parameters:
+  - Effective mass: 1.2e-29
+  - Coupling constant: 0.105
+  - Water coupling: 0.14
+  - Cell spacing: 1
+
+Quantum enhancement factor: 1.03174
+Quantum tunneling probability: 7.94156e-08
+Quantum wave correction: 0.03
+Zero-point energy contribution: 0.05
+
+Should apply quantum corrections: Yes
+Applied biological quantum corrections with factors: 
+  - Bio tunneling probability: 7.94156e-08
+  - Bio wave equation correction: 0.03
+  - Bio zero-point energy contribution: 0.05
+  - Tissue radiosensitivity: 1.2
+  - Cellular repair rate: 0.3
+
+Quantum-corrected damage values:
+  - dna_strand_break: 0.395666
+  - membrane_lipid_peroxidation: 0.159161
+  - mitochondrial_damage: 0.0796039
+  - protein_damage: 0.239517
+
+Test completed successfully!

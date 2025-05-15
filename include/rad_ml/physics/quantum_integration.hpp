@@ -18,27 +18,8 @@
 namespace rad_ml {
 namespace physics {
 
-// Crystal lattice types
-enum CrystalLatticeType { FCC_TYPE, BCC, DIAMOND };
-
-// Crystal lattice structure
-struct CrystalLattice {
-    CrystalLatticeType type;
-    double lattice_constant;
-    double barrier_height;
-    // Other properties specific to the crystal
-};
-
-// Parameters for quantum field theory calculations
-struct QFTParameters {
-    double hbar;               // reduced Planck constant
-    double mass;               // effective mass
-    double coupling_constant;  // coupling to external fields
-    double potential_coefficient;
-    double lattice_spacing;
-    double time_step;
-    int dimensions;
-};
+// Use CrystalLattice and its embedded Type enum from quantum_field_theory.hpp instead of redefining
+// using CrystalLatticeType = CrystalLattice::Type;
 
 // Configuration for applying quantum corrections
 struct QuantumCorrectionConfig {
@@ -51,8 +32,9 @@ struct QuantumCorrectionConfig {
     double radiation_intensity_threshold;
 };
 
-// Defect distribution using map
-using DefectDistribution = std::map<std::string, double>;
+// Use the DefectDistribution type from quantum_field_theory.hpp
+// For compatibility with map-based usage elsewhere
+using MapBasedDefectDistribution = std::map<std::string, double>;
 
 // Function declarations
 QFTParameters createQFTParameters(const CrystalLattice& crystal, double feature_size_nm);
@@ -61,11 +43,9 @@ bool shouldApplyQuantumCorrections(double temperature, double feature_size,
                                    double radiation_intensity,
                                    const QuantumCorrectionConfig& config);
 
-DefectDistribution applyQuantumCorrectionsToSimulation(const DefectDistribution& defects,
-                                                       const CrystalLattice& crystal,
-                                                       double temperature, double feature_size_nm,
-                                                       double radiation_intensity,
-                                                       const QuantumCorrectionConfig& config);
+MapBasedDefectDistribution applyQuantumCorrectionsToSimulation(
+    const MapBasedDefectDistribution& defects, const CrystalLattice& crystal, double temperature,
+    double feature_size_nm, double radiation_intensity, const QuantumCorrectionConfig& config);
 
 double calculateQuantumEnhancementFactor(double temperature, double feature_size);
 

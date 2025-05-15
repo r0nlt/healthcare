@@ -1,14 +1,42 @@
 /**
  * Field Theory Models for Radiation Effects
- * 
+ *
  * This file contains field theory models for simulating
  * the evolution of radiation-induced defects in materials.
  */
 
 #pragma once
 
+#include <cmath>
+#include <map>
+#include <string>
 #include <vector>
+
+// Optional Eigen dependency
+#if __has_include(<Eigen/Dense>)
 #include <Eigen/Dense>
+#define HAS_EIGEN 1
+#else
+#define HAS_EIGEN 0
+// Define minimal matrix class as fallback
+namespace Eigen {
+template <typename T>
+class Matrix3d {
+   private:
+    T data[3][3];
+
+   public:
+    Matrix3d()
+    {
+        for (int i = 0; i < 3; ++i)
+            for (int j = 0; j < 3; ++j) data[i][j] = 0;
+    }
+
+    T& operator()(int i, int j) { return data[i][j]; }
+    const T& operator()(int i, int j) const { return data[i][j]; }
+};
+}  // namespace Eigen
+#endif
 
 namespace rad_ml {
 namespace physics {
@@ -17,12 +45,12 @@ namespace physics {
  * 3D grid for spatial discretization
  */
 class Grid3D {
-public:
+   public:
     int size_x;
     int size_y;
     int size_z;
     double spacing;
-    
+
     /**
      * Constructor with grid dimensions and spacing
      */
@@ -32,24 +60,24 @@ public:
 /**
  * Template for 3D field defined on a grid
  */
-template<typename T = double>
+template <typename T = double>
 class Field3D {
-public:
+   public:
     /**
      * Constructor with grid
      */
     Field3D(const Grid3D& grid);
-    
+
     /**
      * Access operator for 3D indices
      */
     T& operator()(int i, int j, int k);
-    
+
     /**
      * Const access operator for 3D indices
      */
     const T& operator()(int i, int j, int k) const;
-    
+
     /**
      * Set all field values to zero
      */
@@ -60,7 +88,7 @@ public:
  * Parameters for field theory calculations
  */
 struct FieldParameters {
-    double kappa;                   // Gradient energy coefficient
+    double kappa;                            // Gradient energy coefficient
     std::vector<std::vector<double>> gamma;  // Interaction matrix
 };
 
@@ -68,12 +96,12 @@ struct FieldParameters {
  * Free energy functional for field theory calculations
  */
 class FreeEnergyFunctional {
-public:
+   public:
     /**
      * Constructor with parameters
      */
     FreeEnergyFunctional(const FieldParameters& params);
-    
+
     /**
      * Calculate functional derivatives δF/δC_i
      */
@@ -97,30 +125,28 @@ double calculateGradientEnergyCoefficient(const struct MaterialProperties& mater
 /**
  * Create interaction matrix from defect formation energies
  */
-std::vector<std::vector<double>> createInteractionMatrix(const std::vector<double>& defect_formation_energies);
+std::vector<std::vector<double>> createInteractionMatrix(
+    const std::vector<double>& defect_formation_energies);
 
 /**
  * Initialize defect fields based on environment and material
  */
-void initializeDefectFields(
-    std::vector<Field3D<double>>& fields, 
-    const struct RadiationEnvironment& env, 
-    const struct MaterialProperties& material);
+void initializeDefectFields(std::vector<Field3D<double>>& fields,
+                            const struct RadiationEnvironment& env,
+                            const struct MaterialProperties& material);
 
 /**
  * Solve field equations for time evolution
  */
-TimeEvolutionResults solveFieldEquations(
-    std::vector<Field3D<double>>& fields,
-    const std::vector<Field3D<double>>& derivatives,
-    double radiation_dose,
-    double temperature,
-    double applied_stress);
+TimeEvolutionResults solveFieldEquations(std::vector<Field3D<double>>& fields,
+                                         const std::vector<Field3D<double>>& derivatives,
+                                         double radiation_dose, double temperature,
+                                         double applied_stress);
 
 /**
  * Calculate defect clustering ratio
  */
 double calculateClusteringRatio(const std::vector<Field3D<double>>& fields);
 
-} // namespace physics
-} // namespace rad_ml 
+}  // namespace physics
+}  // namespace rad_ml
