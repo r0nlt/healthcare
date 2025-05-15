@@ -284,4 +284,4 @@ This project is licensed under the GNU General Public License v3 - see the LICEN
 
 ## Contact Information
 
-For questions, collaborations, or support, contact Rishab Nuguru at rishabnuguru@example.com.
+For questions, collaborations, or support, contact Rishab Nuguru at rnuguruworkspace@gmail.com.
