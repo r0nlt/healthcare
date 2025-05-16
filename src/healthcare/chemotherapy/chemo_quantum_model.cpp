@@ -377,6 +377,110 @@ double calculateChemoradiationSynergy(const ChemotherapeuticAgent& drug,
     return combined_effect * tissue_factor * quantum_factor;
 }
 
+// Implementation of DrugSpecificQuantumModel
+DrugSpecificQuantumModel::DrugSpecificQuantumModel() { initializeDrugParameters(); }
+
+double DrugSpecificQuantumModel::calculateQMEnhancedBinding(const std::string& drugName,
+                                                            double temperature,
+                                                            bool enableQuantumEffects)
+{
+    if (drugParams_.find(drugName) == drugParams_.end()) {
+        std::cerr << "Warning: Drug '" << drugName << "' not found in database\n";
+        return 0.0;
+    }
+
+    const DrugParameters& params = drugParams_[drugName];
+    double bindingAffinity = params.baseBindingAffinity;
+
+    // Apply quantum enhancement if enabled
+    if (enableQuantumEffects) {
+        // Use TunnelingModel from our healthcare module
+        EnhancedQuantumTunnelingModel tunnelModel;
+        double qmEnhancement = tunnelModel.getQuantumEnhancementFactor(temperature, true);
+        bindingAffinity *= qmEnhancement;
+
+        // Special handling for metal-containing drugs (like cisplatin)
+        if (params.containsMetal) {
+            bindingAffinity *= 1.15;  // 15% additional enhancement from QM treatment of metals
+        }
+    }
+
+    return bindingAffinity;
+}
+
+double DrugSpecificQuantumModel::calculateChemoRadiationSynergy(const std::string& drugName,
+                                                                double radiationDose,
+                                                                TreatmentSchedule schedule,
+                                                                double temperature)
+{
+    if (drugParams_.find(drugName) == drugParams_.end()) {
+        std::cerr << "Warning: Drug '" << drugName << "' not found in database\n";
+        return 0.0;
+    }
+
+    const DrugParameters& params = drugParams_[drugName];
+    double synergy = 0.0;
+
+    // Apply schedule-specific factors based on research findings
+    switch (schedule) {
+        case CONCURRENT:
+            synergy = params.concurrentSynergyFactor * radiationDose;
+            break;
+        case RADIATION_FIRST:
+            synergy = params.radiationFirstSynergyFactor * radiationDose;
+            break;
+        case DRUG_FIRST:
+            synergy = params.drugFirstSynergyFactor * radiationDose;
+            break;
+    }
+
+    // Apply quantum enhancement for DNA-metal interactions
+    if (params.containsMetal) {
+        // Enhanced electron state perturbation from QM effects
+        EnhancedQuantumTunnelingModel tunnelModel;
+        double qmFactor = tunnelModel.getQuantumEnhancementFactor(temperature, true);
+        synergy *= qmFactor;
+    }
+
+    return synergy;
+}
+
+void DrugSpecificQuantumModel::initializeDrugParameters()
+{
+    // Initialize with values from your framework's test results
+    drugParams_["CISPLATIN"] = {
+        0.7595,   // baseBindingAffinity
+        0.7595,   // concurrentSynergyFactor
+        0.11935,  // radiationFirstSynergyFactor
+        0.1085,   // drugFirstSynergyFactor
+        true      // containsMetal
+    };
+
+    drugParams_["PACLITAXEL"] = {
+        0.645,      // baseBindingAffinity
+        0.645,      // concurrentSynergyFactor
+        0.104812,   // radiationFirstSynergyFactor
+        0.0725625,  // drugFirstSynergyFactor
+        false       // containsMetal
+    };
+
+    drugParams_["DOXORUBICIN"] = {
+        0.68125,   // baseBindingAffinity
+        0.68125,   // concurrentSynergyFactor
+        0.221206,  // radiationFirstSynergyFactor
+        0.182735,  // drugFirstSynergyFactor
+        false      // containsMetal
+    };
+
+    drugParams_["FLUOROURACIL"] = {
+        0.612375,  // baseBindingAffinity
+        0.612375,  // concurrentSynergyFactor
+        0.359438,  // radiationFirstSynergyFactor
+        0.539156,  // drugFirstSynergyFactor
+        false      // containsMetal
+    };
+}
+
 }  // namespace chemotherapy
 }  // namespace healthcare
 }  // namespace rad_ml

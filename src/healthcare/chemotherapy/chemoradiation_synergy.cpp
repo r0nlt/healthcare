@@ -130,7 +130,7 @@ LinearQuadraticParameters ChemoradiationSynergyModel::adjustedLQParameters(
 
 // Predict efficacy with different sequencing strategies
 double ChemoradiationSynergyModel::predictEfficacy(double radiation_dose, double drug_concentration,
-                                                   TreatmentSequence sequence,
+                                                   TreatmentSchedule sequence,
                                                    double time_gap_hours)
 {
     // Base effects
@@ -189,7 +189,7 @@ double ChemoradiationSynergyModel::predictEfficacy(double radiation_dose, double
 // Calculate cell survival fraction for combined treatment
 double ChemoradiationSynergyModel::calculateSurvivalFraction(double radiation_dose,
                                                              double drug_concentration,
-                                                             TreatmentSequence sequence,
+                                                             TreatmentSchedule sequence,
                                                              double time_gap_hours)
 {
     // Get adjusted LQ parameters based on drug and sequence
@@ -235,7 +235,7 @@ double ChemoradiationSynergyModel::calculateSurvivalFraction(double radiation_do
 double ChemoradiationSynergyModel::calculateTherapeuticRatio(double tumor_radiation_dose,
                                                              double normal_tissue_radiation_dose,
                                                              double drug_concentration,
-                                                             TreatmentSequence sequence,
+                                                             TreatmentSchedule sequence,
                                                              double time_gap_hours)
 {
     // Create a copy of this model with tumor parameters
@@ -277,7 +277,7 @@ double ChemoradiationSynergyModel::getOptimalTimingGap(double radiation_dose,
     double best_time = 0.0;
     double best_efficacy = 0.0;
 
-    TreatmentSequence sequence = radiation_first ? RADIATION_FIRST : DRUG_FIRST;
+    TreatmentSchedule sequence = radiation_first ? RADIATION_FIRST : DRUG_FIRST;
 
     for (double time = 0.0; time <= 48.0; time += 1.0) {
         double efficacy = predictEfficacy(radiation_dose, drug_concentration, sequence, time);
@@ -486,7 +486,7 @@ double ChemoradiationSynergyModel::applyQuantumCorrectionsToSynergy(double class
 
 // Calculate dose-response curve
 std::vector<double> ChemoradiationSynergyModel::calculateDoseResponseCurve(
-    double max_dose, double drug_concentration, TreatmentSequence sequence, double time_gap_hours)
+    double max_dose, double drug_concentration, TreatmentSchedule sequence, double time_gap_hours)
 {
     // Calculate survival at 0.5 Gy increments
     int num_points = static_cast<int>(max_dose / 0.5) + 1;
