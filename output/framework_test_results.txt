@@ -1,0 +1,112 @@
+===== Radiation-Based Healthcare Quantum Modeling Framework Tests =====
+
+Testing CellCycleModel...
+  Survival at 2 Gy:
+    Normal tissue: 0.618783
+    Tumor (normoxic): 0.566658
+    Tumor (hypoxic): 0.799315
+  All assertions passed!
+
+Testing DNADamageModel...
+  DNA damage at 2 Gy:
+    Photon - DSBs: 29, SSBs: 60
+    Proton - DSBs: 32, SSBs: 66
+    Carbon - DSBs: 87, SSBs: 180
+    Photon SSB:DSB ratio: 2.06897
+    Proton SSB:DSB ratio: 2.0625
+    Carbon SSB:DSB ratio: 2.06897
+  All assertions passed!
+
+Testing QuantumWaveEquationSolver...
+  Tunneling probabilities:
+    At 0°C: 8.62706e-05
+    At 37°C: 0.000136937
+    At 40°C: 0.000141046
+  Effect of barrier height at 37°C:
+    0.3 eV barrier: 0.000136952
+    0.5 eV barrier: 0.000136937
+    0.7 eV barrier: 0.000136926
+  All assertions passed!
+
+Testing Advanced Quantum Effects...
+  Testing Membrane Tunneling:
+    Normal temperature tunneling: 0.000136888
+    Hypothermia tunneling: 0.000128675
+    Hyperthermia tunneling: 0.000140995
+  Testing Water Content Effects:
+    Low water (20%): 0.002
+    Medium water (50%): 0.005
+    High water (80%): 0.008
+  Testing Zero-Point Energy Effects:
+    ZPE contribution: 0.0700339
+
+Testing Cross-Domain QFT Bridge...
+  Parameter Translation:
+    Semiconductor energy gap: 1.12 eV
+    Biological bond energy: 0.336 eV
+    Semiconductor feature size: 15 nm
+    Biological feature size: 30 nm
+  Cross-Domain Validation:
+    At 0.5 Gy: PASSED
+    At 1 Gy: PASSED
+    At 2 Gy: PASSED
+    At 5 Gy: PASSED
+
+Testing Chemoradiation Synergy...
+  Drug Synergy Comparison:
+    Cisplatin:
+      Concurrent: 0.7595
+      Radiation first: 0.11935
+      Drug first: 0.1085
+      Therapeutic ratio: 2.43
+    Paclitaxel:
+      Concurrent: 0.645
+      Radiation first: 0.104812
+      Drug first: 0.0725625
+      Therapeutic ratio: 2.79
+    Doxorubicin:
+      Concurrent: 0.68125
+      Radiation first: 0.221206
+      Drug first: 0.182735
+      Therapeutic ratio: 1.98
+    Fluorouracil:
+      Concurrent: 0.612375
+      Radiation first: 0.359438
+      Drug first: 0.539156
+      Therapeutic ratio: 2.52
+  Quantum Effects on Chemoradiation:
+    Binding with quantum effects: 0.85
+    Binding without quantum effects: 0.7
+    Enhancement: 21.4286%
+
+Testing Clinical Validation...
+  Lung QUANTEC Validation:
+    V20 = 20%:
+      Observed risk: 7% ± 3%
+      Predicted risk: 7%
+      Within CI: Yes
+    V20 = 35%:
+      Observed risk: 20% ± 5%
+      Predicted risk: 20%
+      Within CI: Yes
+    V20 = 40%:
+      Observed risk: 30% ± 8%
+      Predicted risk: 30%
+      Within CI: Yes
+
+Testing Therapeutic Ratio Optimization...
+  Standard Optimization:
+    Optimal dose: 2.5 Gy
+    Therapeutic ratio: 3
+  Quantum-Enhanced Optimization:
+    Optimal dose: 2.5 Gy
+    Therapeutic ratio: 3
+    Improvement: 0%
+
+Generating visualization outputs...
+  Generating dose-response curves...
+  Generating quantum effects visualization...
+  Generating chemoradiation synergy plots...
+Visualizations saved to ./output/ directory
+
+All tests completed successfully!
