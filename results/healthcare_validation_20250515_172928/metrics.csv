@@ -1,0 +1,6 @@
+TestName,Metric,Value
+healthcare_basic,enhancement,1.03174
+chemotherapy_basic,enhancement,2.000000
+chemotherapy_basic,binding,0.45
+chemotherapy_basic,therapeutic_ratio,2.224536
+chemotherapy_basic,synergy_factor,0.560500

@@ -1,0 +1,21 @@
+== Testing Chemoradiation Synergy Model ==
+======================================================================
+Testing synergy for Cisplatin + Radiation:
+  Synergy (concurrent): 0.560500
+
+Testing treatment sequencing:
+  Concurrent treatment efficacy: 1.784120
+  Radiation first (6h gap) efficacy: 1.541533
+  Drug first (6h gap) efficacy: 1.758293
+
+Testing cell survival fraction:
+  Radiation alone (2 Gy): 0.458406
+  Drug alone (0.5 µmol/L): 0.666667
+  Combined treatment: 0.251462
+
+Testing therapeutic ratio:
+  Therapeutic ratio (concurrent): 2.224536
+
+Finding optimal timing:
+  Optimal gap (radiation first): 0.000000 hours
+  Optimal gap (drug first): 0.000000 hours

@@ -1,0 +1,132 @@
+==== Radiation-Based Healthcare Quantum Modeling Framework ====
+==== Chemotherapy Extension Test Program ====
+======================================================================
+======================================================================
+== Testing Drug Diffusion and Binding ==
+======================================================================
+Drug: Paclitaxel
+  Molecular weight: 853.9 Da
+  Log P: 3
+  Binding energy: 0.45 eV
+  Half-life: 20 hours
+  Quantum tunneling factor: 0.04
+  Target affinities:
+    - cell_membrane: 0.28 eV
+    - microtubules: 0.52 eV
+    - mitochondria: 0.32 eV
+
+Tissue type: Soft Tissue
+  Water content: 0.7
+  Cell density: 200000 cells/mm³
+  Effective barrier: 0.35 eV
+  Repair rate: 0.4
+  Radiosensitivity: 1.2
+
+Testing membrane diffusion:
+  Classical diffusion (no quantum): 0.000000
+  Quantum-corrected diffusion: 0.000000
+  Quantum enhancement: 2.000000%
+
+Testing drug-target binding:
+  Binding to microtubules: 1.000000
+======================================================================
+== Testing Drug Target Interaction Model ==
+======================================================================
+Drug: Cisplatin
+  Molecular weight: 300.010000 Da
+  Log P: -2.190000
+  Binding energy: 0.420000 eV
+  Half-life: 72.000000 hours
+  Quantum tunneling factor: 0.035000
+  Target affinities:
+    - dna: 0.450000 eV
+    - glutathione: 0.300000 eV
+    - proteins: 0.380000 eV
+
+Tissue type: Soft Tissue
+  Water content: 0.700000
+  Cell density: 200000.000000 cells/mm³
+  Effective barrier: 0.350000 eV
+  Repair rate: 0.400000
+  Radiosensitivity: 1.000000
+
+Testing binding probability:
+  Cell size effects:
+    - 8.000000 µm: 1.093333
+    - 15.000000 µm: 1.000000
+    - 25.000000 µm: 1.000000
+  Concentration effects:
+    - 0.100000 µmol/L: 1.000000
+    - 0.500000 µmol/L: 1.000000
+    - 1.000000 µmol/L: 1.000000
+
+Testing time-dependent binding:
+  Binding curve over 24 hours:
+    - 0.000000 hours: 1.000000
+    - 4.000000 hours: 1.000000
+    - 8.000000 hours: 1.000000
+    - 12.000000 hours: 1.000000
+    - 16.000000 hours: 1.000000
+    - 20.000000 hours: 1.000000
+    - 24.000000 hours: 1.000000
+
+Drug response at 0.5 µmol/L after 12 hours:
+  Intracellular concentration: 0.000000 µmol/L
+  DNA binding rate: 1.000000
+  Membrane permeability: 0.000004 cm/s
+  Metabolic degradation rate: 0.012997 1/h
+  Quantum enhanced binding: 1.035000
+  Cellular damage:
+    - dna_damage: 0.900000
+    - membrane_damage: 0.000000
+    - mitochondrial_damage: 0.000000
+    - protein_damage: 0.000000
+======================================================================
+== Testing Chemoradiation Synergy Model ==
+======================================================================
+Testing synergy for Cisplatin + Radiation:
+  Synergy (concurrent): 0.560500
+
+Testing treatment sequencing:
+  Concurrent treatment efficacy: 1.784120
+  Radiation first (6h gap) efficacy: 1.541533
+  Drug first (6h gap) efficacy: 1.758293
+
+Testing cell survival fraction:
+  Radiation alone (2 Gy): 0.458406
+  Drug alone (0.5 µmol/L): 0.666667
+  Combined treatment: 0.251462
+
+Testing therapeutic ratio:
+  Therapeutic ratio (concurrent): 2.224536
+
+Finding optimal timing:
+  Optimal gap (radiation first): 0.000000 hours
+  Optimal gap (drug first): 0.000000 hours
+
+Comparing different drugs:
+  Cisplatin: 1.784120
+  Paclitaxel: 1.611740
+  Doxorubicin: 1.604980
+  Fluorouracil: 1.655680
+======================================================================
+== Testing Quantum Effects on Chemoradiation ==
+======================================================================
+Testing drug interaction with/without quantum effects:
+  Binding comparison for different cell sizes:
+    - 8.000000 µm: Q: 1.093333, C: 0.000001 (140796294.593025% enhancement)
+    - 15.000000 µm: Q: 1.000000, C: 0.000001 (140796294.593025% enhancement)
+    - 25.000000 µm: Q: 1.000000, C: 0.000001 (140796294.593025% enhancement)
+
+  Drug response comparison at 12 hours:
+    - Intracellular concentration: Q: 0.000000, C: 0.000000 (nan% diff)
+    - DNA binding rate: Q: 0.500000, C: 0.000000 (inf% diff)
+
+Testing quantum effects in tissues with different water content:
+  Water content 0.100000: Efficacy = 1.393697
+  Water content 0.300000: Efficacy = 1.457047
+  Water content 0.500000: Efficacy = 1.520397
+  Water content 0.700000: Efficacy = 1.583747
+  Water content 0.900000: Efficacy = 1.647097
+======================================================================
+Tests completed successfully!
