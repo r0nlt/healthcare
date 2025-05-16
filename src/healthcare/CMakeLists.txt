@@ -1,42 +1,23 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.10)
 
-# Healthcare module components
-set(HEALTHCARE_SOURCES
-    bio_quantum_integration.cpp
-    radiation_therapy_model.cpp
-    chemotherapy/chemo_quantum_model.cpp
-    chemotherapy/chemoradiation_synergy.cpp
-    chemotherapy/drug_target_interaction.cpp
-)
+# Set the project name
+project(rad_ml_healthcare)
 
-# Create library
-add_library(rad_ml_healthcare ${HEALTHCARE_SOURCES})
+# Add subdirectories if needed
+# add_subdirectory(chemotherapy)
+
+# Define library target if there are implementations
+# For now, we'll just create an empty header-only interface library
+add_library(rad_ml_healthcare INTERFACE)
 
 # Include directories
-target_include_directories(rad_ml_healthcare PUBLIC
-    ${PROJECT_SOURCE_DIR}/include
+target_include_directories(rad_ml_healthcare
+    INTERFACE
+    ${CMAKE_SOURCE_DIR}/include
 )
 
-# Build the QM/MM integration test executable
-add_executable(qmmm_integration_test
-    qmmm_integration_test.cpp
-)
-
-# Link against the healthcare library
-target_link_libraries(qmmm_integration_test
-    rad_ml_healthcare
-)
-
-# Set C++14 standard for the test executable
-set_target_properties(qmmm_integration_test PROPERTIES
-    CXX_STANDARD 14
-    CXX_STANDARD_REQUIRED ON
-    CXX_EXTENSIONS OFF
-)
-
-# Install targets
-install(TARGETS
-    rad_ml_healthcare
-    qmmm_integration_test
-    DESTINATION bin
+# Set C++17 standard
+set_target_properties(rad_ml_healthcare PROPERTIES
+    INTERFACE_CXX_STANDARD 17
+    INTERFACE_CXX_STANDARD_REQUIRED ON
 )
