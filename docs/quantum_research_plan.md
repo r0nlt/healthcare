@@ -9,6 +9,7 @@ This document outlines research directions and experimental plans leveraging the
 3. **Identify optimal parameter ranges** for specific applications
 4. **Explore cross-domain correlations** between quantum effects
 5. **Benchmark performance characteristics** of quantum solvers
+6. **Clarify temperature-dependent quantum effects** in various systems
 
 ## Planned Experiments
 
@@ -146,6 +147,59 @@ for threads in 1 2 4 8 16 32; do
 done
 ```
 
+### Experiment 6: Zero-Point Energy vs Temperature Dependency Analysis
+
+**Objective**: Clarify the relationship between zero-point energy and temperature effects in quantum models.
+
+**Methodology**:
+- Separate pure ZPE (ground state) calculations from temperature-dependent quantum corrections
+- Run simulations across wide temperature range (near 0K to 500K)
+- Compare results with theoretical predictions for both pure ZPE and thermal corrections
+- Analyze correlation structure between different temperature regimes
+
+**Expected Outcomes**:
+- Decoupled ZPE and thermal quantum correction factors
+- Accurate temperature dependence model for quantum effects
+- Explanation for observed perfect correlation in current implementation
+- Refined quantum correction calculations for different temperature regimes
+
+**Applications**:
+- More accurate low-temperature quantum models
+- Improved theoretical consistency in quantum simulations
+- Better extrapolation capabilities across temperature ranges
+
+**Command**:
+```bash
+./build_quantum_mc_test.sh --samples 100000 --threads 16 --temp-min 0.1 --temp-max 500.0 --size-min 1.0 --size-max 100.0 --barrier-min 0.1 --barrier-max 5.0 --zpe-correction-model detailed
+```
+
+### Experiment 7: Environmental Effects in Biological Quantum Systems
+
+**Objective**: Quantify how biological environments modify quantum mechanical effects relevant to radiation interactions.
+
+**Methodology**:
+- Extend Monte Carlo framework with protein environment parameters
+- Model solvent effects on quantum processes
+- Include dielectric constant variations in biological media
+- Test across physiologically relevant conditions
+- Compare with isolated quantum system results
+
+**Expected Outcomes**:
+- Environmental modification factors for quantum effects in biological systems
+- Quantification of protein environment impact on tunneling and wave behavior
+- More accurate model of radiation effects in heterogeneous biological tissues
+- Statistical validation of quantum biology theoretical predictions
+
+**Applications**:
+- Enhanced radiation therapy planning models
+- More accurate drug-radiation interaction simulations
+- Improved biological damage prediction in radiation environments
+
+**Command**:
+```bash
+./build_quantum_mc_test.sh --samples 100000 --threads 16 --temp-min 305.0 --temp-max 315.0 --size-min 1.0 --size-max 100.0 --barrier-min 0.1 --barrier-max 1.0 --env-effects enabled --protein-env-model detailed --solvent-effects enabled
+```
+
 ## Research Timeline
 
 1. **Month 1**: Setup and preliminary experiments
@@ -163,7 +217,13 @@ done
    - Optimize code for critical use cases
    - Implement parallel performance enhancements
 
-4. **Month 5-6**: Extended analysis and applications
+4. **Month 5-6**: Advanced physics and biological modeling
+   - Execute Experiments 6-7
+   - Refine ZPE and temperature models
+   - Implement biological environment effects
+   - Validate with available experimental data
+
+5. **Month 7**: Extended analysis and applications
    - Apply findings to specific domain models
    - Integrate with other framework components
    - Develop domain-specific correction factors
@@ -207,6 +267,7 @@ done
 1. **Physics Departments**:
    - Theoretical validation of quantum models
    - Advanced quantum equation implementations
+   - Zero-point energy and thermal quantum effects expertise
 
 2. **Semiconductor Industry**:
    - Practical applications for device physics
@@ -215,6 +276,8 @@ done
 3. **Healthcare Research**:
    - Biological tissue response models
    - Radiation therapy optimization
+   - Quantum biology research groups
+   - Protein environment quantum effects specialists
 
 4. **Space Agencies**:
    - Spacecraft electronics hardening
