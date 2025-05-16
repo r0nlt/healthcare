@@ -1,0 +1,7 @@
+Status,TestName,Duration(s)
+PASS,healthcare_basic,0
+PASS,chemotherapy_basic,0
+PASS,water_content,1
+PASS,chemoradiation,1
+PASS,cell_size,1
+PASS,clinical_relevance,0

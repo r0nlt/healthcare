@@ -89,3 +89,22 @@ message(STATUS "Configuration:")
 message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "  Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "  Include directory: ${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+# Add healthcare and chemotherapy modules
+add_library(rad_ml_healthcare
+    src/healthcare/bio_quantum_integration.cpp
+    src/healthcare/radiation_therapy_model.cpp
+    src/healthcare/chemotherapy/chemo_quantum_model.cpp
+    src/healthcare/chemotherapy/drug_target_interaction.cpp
+    src/healthcare/chemotherapy/chemoradiation_synergy.cpp
+)
+
+# Build the chemotherapy test
+add_executable(chemotherapy_test
+    src/healthcare/chemotherapy/chemotherapy_test.cpp
+)
+target_link_libraries(chemotherapy_test rad_ml_healthcare)
+
+# Add install targets for healthcare library
+install(TARGETS rad_ml_healthcare DESTINATION lib)
+install(DIRECTORY include/rad_ml/healthcare DESTINATION include/rad_ml)
