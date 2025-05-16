@@ -55,7 +55,7 @@ The system includes quantum parameters for standard chemotherapeutic agents:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/rad-tolerant-ml.git
+git clone https://github.com/r0nlt/healthcare.git
 cd rad-tolerant-ml
 
 # Build using CMake
