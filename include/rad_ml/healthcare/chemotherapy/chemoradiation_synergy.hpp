@@ -19,8 +19,8 @@ struct LinearQuadraticParameters {
     double alpha_beta_ratio;  // Gy
 };
 
-// Treatment sequence options
-enum TreatmentSequence { CONCURRENT, RADIATION_FIRST, DRUG_FIRST };
+// Using TreatmentSchedule from chemo_quantum_model.hpp instead
+// enum TreatmentSequence { CONCURRENT, RADIATION_FIRST, DRUG_FIRST };
 
 class ChemoradiationSynergyModel {
    public:
@@ -41,16 +41,16 @@ class ChemoradiationSynergyModel {
 
     // Predict efficacy with different sequencing strategies
     double predictEfficacy(double radiation_dose, double drug_concentration,
-                           TreatmentSequence sequence, double time_gap_hours);
+                           TreatmentSchedule sequence, double time_gap_hours);
 
     // Calculate cell survival fraction for combined treatment
     double calculateSurvivalFraction(double radiation_dose, double drug_concentration,
-                                     TreatmentSequence sequence, double time_gap_hours);
+                                     TreatmentSchedule sequence, double time_gap_hours);
 
     // Calculate therapeutic ratio for combined treatment
     double calculateTherapeuticRatio(double tumor_radiation_dose,
                                      double normal_tissue_radiation_dose, double drug_concentration,
-                                     TreatmentSequence sequence, double time_gap_hours);
+                                     TreatmentSchedule sequence, double time_gap_hours);
 
     // Get optimal treatment timing
     double getOptimalTimingGap(double radiation_dose, double drug_concentration,
@@ -85,7 +85,7 @@ class ChemoradiationSynergyModel {
 
     // Calculate dose-response curve
     std::vector<double> calculateDoseResponseCurve(double max_dose, double drug_concentration,
-                                                   TreatmentSequence sequence,
+                                                   TreatmentSchedule sequence,
                                                    double time_gap_hours);
 };
 

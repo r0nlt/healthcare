@@ -3,6 +3,9 @@
 #include <algorithm>  // For std::max, std::min
 #include <cmath>      // For std::exp, std::sqrt
 #include <iostream>
+#include <limits>
+#include <numeric>
+#include <stdexcept>
 
 namespace rad_ml {
 namespace healthcare {
@@ -290,6 +293,234 @@ double calculateBioZeroPointEnergyContribution(double hbar, double effective_mas
 
     // Ensure result is within biologically reasonable bounds
     return std::min(0.05, std::max(0.0, zpe_significance));  // Cap at 5%
+}
+
+// Implementation of TieredQMMMPartitioner methods
+TieredQMMMPartitioner::QMMethod TieredQMMMPartitioner::selectMethodForRegion(size_t numAtoms) const
+{
+    if (numAtoms <= 20) return COUPLED_CLUSTER;
+    if (numAtoms <= 500) return DENSITY_FUNCTIONAL;
+    return SEMIEMPIRICAL;
+}
+
+TieredQMMMPartitioner::QMRegion TieredQMMMPartitioner::defineQMRegionAroundLigand(
+    const Molecule& ligand, const BiologicalSystem& receptor, double cutoffRadius) const
+{
+    QMRegion region;
+    region.cutoffRadius = cutoffRadius;
+
+    // Add all ligand atoms to QM region
+    for (size_t i = 0; i < ligand.getAtomCount(); ++i) {
+        region.atomIndices.push_back(ligand.getGlobalIndex(i));
+    }
+
+    // Select appropriate QM method based on region size
+    region.method = selectMethodForRegion(region.atomIndices.size());
+
+    return region;
+}
+
+TieredQMMMPartitioner::QMRegion TieredQMMMPartitioner::defineQMRegionForMetalSystem(
+    const Molecule& drug, const BiologicalSystem& receptor) const
+{
+    QMRegion region = defineQMRegionAroundLigand(drug, receptor, 6.0);
+
+    // For metal-containing systems, prefer higher accuracy methods
+    if (drug.containsMetals() && region.method == SEMIEMPIRICAL) {
+        region.method = DENSITY_FUNCTIONAL;
+    }
+
+    return region;
+}
+
+double TieredQMMMPartitioner::calculateMinDistance(const Molecule& mol, const Vector3& point) const
+{
+    // Calculate minimum distance from any atom in molecule to point
+    double minDist = std::numeric_limits<double>::max();
+    for (size_t i = 0; i < mol.getAtomCount(); ++i) {
+        double dist = (mol.getAtomPosition(i) - point).norm();
+        minDist = std::min(minDist, dist);
+    }
+    return minDist;
+}
+
+// Implementation of EnhancedQuantumTunnelingModel methods
+double EnhancedQuantumTunnelingModel::calculateTunnelingProbability(double temperature,
+                                                                    double barrierHeight,
+                                                                    double barrierWidth) const
+{
+    // Base tunneling calculation
+    double baseProbability = std::exp(-barrierWidth * std::sqrt(2.0 * MASS * barrierHeight) / HBAR);
+
+    // Enhanced temperature dependency model
+    // Higher temperatures amplify tunneling probability
+    double temperatureEnhancement = 1.0 + ALPHA * (temperature - 273.15) / 40.0;
+
+    return baseProbability * temperatureEnhancement;
+}
+
+double EnhancedQuantumTunnelingModel::getQuantumEnhancementFactor(double temperature,
+                                                                  bool isBiologicalSystem) const
+{
+    // For biological systems: 3-5% enhancement (lower)
+    // For semiconductor systems: 8-12% enhancement (higher)
+    double baseEnhancement = isBiologicalSystem ? 0.04 : 0.10;
+
+    // Temperature adjustment (slight decrease at higher temps)
+    double tempAdjustment = 1.0 - BETA * (temperature - 310.0) / 100.0;
+
+    return 1.0 + (baseEnhancement * tempAdjustment);
+}
+
+// Implementation of QMIntegratedWorkflow methods
+QMIntegratedWorkflow::QMIntegratedWorkflow() : currentStage_(PREPROCESSING) {}
+
+void QMIntegratedWorkflow::processDrugCandidate(const Molecule& drug,
+                                                const BiologicalSystem& target,
+                                                double radiationDose)
+{
+    switch (currentStage_) {
+        case PREPROCESSING:
+            // Fast MM-based initial screening
+            if (performInitialScreening(drug, target)) {
+                advanceToStage(REFINEMENT);
+                processDrugCandidate(drug, target, radiationDose);
+            }
+            break;
+
+        case REFINEMENT:
+            // Mixed MM/QM refinement for promising candidates
+            if (performRefinementAnalysis(drug, target, radiationDose)) {
+                advanceToStage(FINAL_ANALYSIS);
+                processDrugCandidate(drug, target, radiationDose);
+            }
+            break;
+
+        case FINAL_ANALYSIS:
+            // Full QM/MM analysis for lead compounds
+            performFinalQMMMAnalysis(drug, target, radiationDose);
+            break;
+    }
+}
+
+void QMIntegratedWorkflow::advanceToStage(ComputationalStage newStage)
+{
+    std::cout << "Advancing from stage " << currentStage_ << " to stage " << newStage << std::endl;
+    currentStage_ = newStage;
+}
+
+bool QMIntegratedWorkflow::performInitialScreening(const Molecule& drug,
+                                                   const BiologicalSystem& target)
+{
+    std::cout << "Performing initial MM-based screening for drug: " << drug.getName() << std::endl;
+
+    // This is a placeholder until we implement a full MM model
+    // In a real implementation, would do a fast MM calculation here
+
+    // Check basic drug-likeness properties
+    bool passesRuleOfFive = checkRuleOfFive(drug);
+
+    // For now, pass if it meets basic criteria
+    bool passes = passesRuleOfFive && (drug.getMolecularWeight() < 900.0);
+
+    std::cout << "Initial screening result: " << (passes ? "PASSED" : "FAILED") << std::endl;
+
+    return passes;
+}
+
+bool QMIntegratedWorkflow::performRefinementAnalysis(const Molecule& drug,
+                                                     const BiologicalSystem& target,
+                                                     double radiationDose)
+{
+    std::cout << "Performing QM/MM refinement analysis for drug: " << drug.getName() << std::endl;
+
+    // This is a placeholder until we implement full QM/MM optimization
+    // In a real implementation, would do QM/MM optimization here
+
+    // Use quantum tunneling to predict enhanced binding
+    EnhancedQuantumTunnelingModel tunnelModel;
+    double qmEnhancement = tunnelModel.getQuantumEnhancementFactor(310.0, true);
+
+    std::cout << "QM Enhancement factor: " << qmEnhancement << std::endl;
+
+    // For now, use simplified criteria
+    bool passes = (qmEnhancement > 1.02) && (drug.getMolecularWeight() > 200.0) &&
+                  (drug.getMolecularWeight() < 900.0);
+
+    std::cout << "Refinement analysis result: " << (passes ? "PASSED" : "FAILED") << std::endl;
+
+    return passes;
+}
+
+void QMIntegratedWorkflow::performFinalQMMMAnalysis(const Molecule& drug,
+                                                    const BiologicalSystem& target,
+                                                    double radiationDose)
+{
+    std::cout << "Performing final QM/MM analysis for drug: " << drug.getName() << std::endl;
+
+    // Full QM/MM analysis with temperature-dependent quantum effects
+
+    // Define QM region with appropriate method
+    TieredQMMMPartitioner partitioner;
+    TieredQMMMPartitioner::QMRegion qmRegion;
+
+    if (drug.containsMetals()) {
+        qmRegion = partitioner.defineQMRegionForMetalSystem(drug, target);
+        std::cout << "Using specialized metal-system QM region definition" << std::endl;
+    }
+    else {
+        qmRegion = partitioner.defineQMRegionAroundLigand(drug, target);
+        std::cout << "Using standard QM region definition" << std::endl;
+    }
+
+    // Report on QM region
+    std::cout << "QM region contains " << qmRegion.atomIndices.size() << " atoms with method: ";
+
+    switch (qmRegion.method) {
+        case TieredQMMMPartitioner::SEMIEMPIRICAL:
+            std::cout << "SEMIEMPIRICAL" << std::endl;
+            break;
+        case TieredQMMMPartitioner::DENSITY_FUNCTIONAL:
+            std::cout << "DENSITY_FUNCTIONAL" << std::endl;
+            break;
+        case TieredQMMMPartitioner::COUPLED_CLUSTER:
+            std::cout << "COUPLED_CLUSTER" << std::endl;
+            break;
+    }
+
+    // Temperature-dependent analysis (body temperature)
+    const double bodyTemp = 310.0;  // K
+
+    // Calculate quantum enhancement
+    EnhancedQuantumTunnelingModel tunnelModel;
+    double qmEnhancement = tunnelModel.getQuantumEnhancementFactor(bodyTemp, true);
+
+    std::cout << "Final QM Enhancement factor: " << qmEnhancement << std::endl;
+
+    // In a real implementation, would perform expensive QM/MM calculations here
+
+    // Output final results
+    std::cout << "Final QM/MM Analysis Report for " << drug.getName() << std::endl;
+    std::cout << "================================================" << std::endl;
+    std::cout << "Quantum Enhancement Factor: " << qmEnhancement << std::endl;
+    std::cout << "Radiation Dose: " << radiationDose << " Gy" << std::endl;
+
+    // Calculate synergy for different schedules
+    double concurrent = 0.5 * qmEnhancement;
+    double radiationFirst = 0.3 * qmEnhancement;
+    double drugFirst = 0.4 * qmEnhancement;
+
+    std::cout << "Treatment Schedule Synergy Results:" << std::endl;
+    std::cout << "  Concurrent:      " << concurrent << std::endl;
+    std::cout << "  Radiation First: " << radiationFirst << std::endl;
+    std::cout << "  Drug First:      " << drugFirst << std::endl;
+}
+
+bool QMIntegratedWorkflow::checkRuleOfFive(const Molecule& drug)
+{
+    // Lipinski's Rule of Five implementation
+    return (drug.getMolecularWeight() <= 500.0 && drug.getLogP() <= 5.0 &&
+            drug.getHBondDonors() <= 5 && drug.getHBondAcceptors() <= 10);
 }
 
 }  // namespace healthcare

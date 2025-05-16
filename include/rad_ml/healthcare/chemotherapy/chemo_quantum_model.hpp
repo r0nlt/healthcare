@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -59,6 +60,39 @@ struct ChemoradiationParameters {
     bool radiation_first;              // true if radiation before drug
     double radiosensitization_factor;  // enhancement due to drug
     double repair_inhibition_factor;   // repair inhibition due to drug
+};
+
+// Treatment scheduling enum for the new DrugSpecificQuantumModel
+enum TreatmentSchedule { CONCURRENT, RADIATION_FIRST, DRUG_FIRST };
+
+/**
+ * Drug-specific quantum modeling for chemoradiation synergy
+ * based on QM-MM docking and QM-QSAR approaches
+ */
+class DrugSpecificQuantumModel {
+   public:
+    DrugSpecificQuantumModel();
+
+    // Calculate drug-specific binding with QM corrections
+    double calculateQMEnhancedBinding(const std::string& drugName, double temperature,
+                                      bool enableQuantumEffects = true);
+
+    // Calculate synergy between radiation and drug with QM corrections
+    double calculateChemoRadiationSynergy(const std::string& drugName, double radiationDose,
+                                          TreatmentSchedule schedule, double temperature);
+
+   private:
+    struct DrugParameters {
+        double baseBindingAffinity;
+        double concurrentSynergyFactor;
+        double radiationFirstSynergyFactor;
+        double drugFirstSynergyFactor;
+        bool containsMetal;
+    };
+
+    std::map<std::string, DrugParameters> drugParams_;
+
+    void initializeDrugParameters();
 };
 
 // Create a therapeutic drug based on parameters

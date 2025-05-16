@@ -21,8 +21,11 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/include
 )
 
-# Create the rad_tolerant_ml_healthcare library
+# Add healthcare directory
 if(BUILD_HEALTHCARE)
+    add_subdirectory(src/healthcare)
+
+    # Create the rad_tolerant_ml_healthcare library
     file(GLOB_RECURSE HEALTHCARE_SOURCES
         "src/rad_ml/healthcare/*.cpp"
     )
